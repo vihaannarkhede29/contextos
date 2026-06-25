@@ -96,6 +96,22 @@ pnpm test
 bash scripts/smoke-test.sh
 ```
 
+## Deploy (Vercel)
+
+The marketing landing page and interactive demo deploy to Vercel. The full local dashboard (`/app`) requires `contextos index` on your machine.
+
+1. Import [github.com/vihaannarkhede29/contextos](https://github.com/vihaannarkhede29/contextos) in [Vercel](https://vercel.com/new)
+2. Set **Root Directory** to `apps/dashboard`
+3. Framework preset: **Next.js** (install/build commands are in `apps/dashboard/vercel.json`)
+4. Deploy
+
+Or from CLI after `npx vercel login`:
+
+```bash
+cd apps/dashboard
+npx vercel deploy --prod
+```
+
 ## Troubleshooting
 
 | Issue | Fix |
