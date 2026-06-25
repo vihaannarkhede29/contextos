@@ -96,9 +96,21 @@ pnpm test
 bash scripts/smoke-test.sh
 ```
 
-## Deploy (Vercel)
+## Deploy
 
-The marketing landing page and interactive demo deploy to Vercel. The full local dashboard (`/app`) requires `contextos index` on your machine.
+The marketing landing page and interactive demo can be hosted on Netlify or Vercel. The full local dashboard (`/app`) requires `contextos index` on your machine.
+
+### Netlify (recommended)
+
+1. Sign in at [app.netlify.com](https://app.netlify.com) with GitHub
+2. **Add new site** → **Import an existing project** → **GitHub**
+3. Select **[vihaannarkhede29/contextos](https://github.com/vihaannarkhede29/contextos)**
+4. Netlify reads `netlify.toml` automatically — no manual build settings needed
+5. Click **Deploy site**
+
+Direct import: [app.netlify.com/start/deploy?repository=https://github.com/vihaannarkhede29/contextos](https://app.netlify.com/start/deploy?repository=https://github.com/vihaannarkhede29/contextos)
+
+### Vercel
 
 1. Import [github.com/vihaannarkhede29/contextos](https://github.com/vihaannarkhede29/contextos) in [Vercel](https://vercel.com/new)
 2. Set **Root Directory** to `apps/dashboard`

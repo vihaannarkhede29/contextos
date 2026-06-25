@@ -1,0 +1,10 @@
+[build]
+  base = "apps/dashboard"
+  command = "cd ../.. && corepack enable && pnpm install && pnpm turbo run build --filter=@contextos/dashboard"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
