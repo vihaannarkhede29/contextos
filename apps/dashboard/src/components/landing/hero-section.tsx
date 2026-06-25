@@ -6,6 +6,7 @@ import { ArrowRight, Check, Copy, Terminal } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { DashboardMock } from '@/components/landing/dashboard-mock';
+import { COMMANDS, SITE } from '@/lib/site-config';
 
 const stats = [
   { value: '100%', label: 'local' },
@@ -30,7 +31,15 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-[#1E293B] bg-[#1E293B]/40 px-4 py-1.5 text-xs text-[#F3F4F6]/55 backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[#22C55E] shadow-[0_0_8px_#22C55E]" />
-            Local-first memory layer · MIT · zero telemetry
+            Local-first · MIT ·{' '}
+            <a
+              href={SITE.github}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#10B981] hover:underline"
+            >
+              github.com/vihaannarkhede29/contextos
+            </a>
           </span>
         </motion.div>
 
@@ -66,12 +75,12 @@ export function HeroSection() {
             <div className="flex items-center gap-2 rounded-xl border border-[#1E293B] bg-[#141b2d]/80 p-1.5 pl-4 shadow-[0_0_40px_-12px_rgba(16,185,129,0.25)] backdrop-blur-sm">
               <Terminal className="h-4 w-4 shrink-0 text-[#10B981]/70" />
               <code className="flex-1 truncate text-left font-mono text-sm text-[#22C55E]">
-                npm install -g contextosai
+                {COMMANDS.install}
               </code>
               <button
                 type="button"
                 onClick={() => {
-                  void navigator.clipboard.writeText('npm install -g contextosai');
+                  void navigator.clipboard.writeText(COMMANDS.install);
                   setCopied(true);
                   setTimeout(() => setCopied(false), 2000);
                 }}
@@ -91,10 +100,17 @@ export function HeroSection() {
               </button>
             </div>
 
+            <p className="mt-3 text-center font-mono text-[11px] text-[#F3F4F6]/35">
+              then{' '}
+              <span className="text-[#22C55E]/80">{COMMANDS.initAndIndex}</span>
+              {' · '}
+              <span className="text-[#22C55E]/80">{COMMANDS.watch}</span>
+            </p>
+
             <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
               <Button size="lg" className="rounded-full px-6" asChild>
-                <Link href="/app">
-                  Open Dashboard <ArrowRight className="h-4 w-4" />
+                <Link href="#install">
+                  Get started <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               <Button
@@ -103,7 +119,7 @@ export function HeroSection() {
                 className="rounded-full border-[#1E293B] bg-transparent px-6 text-[#F3F4F6]/70"
                 asChild
               >
-                <a href="https://github.com/vihaannarkhede29/contextos" target="_blank" rel="noreferrer">
+                <a href={SITE.github} target="_blank" rel="noreferrer">
                   View on GitHub
                 </a>
               </Button>

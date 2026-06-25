@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import {
   ArrowRight,
   Zap,
-  Sparkles,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/brand/logo';
@@ -16,6 +15,8 @@ import CTA1 from '@/components/ui/8bit-cta1';
 import { WorkflowSpotlight } from '@/components/landing/workflow-spotlight';
 import { DashboardShowcase } from '@/components/landing/dashboard-showcase';
 import { RoiSection } from '@/components/landing/roi-section';
+import { InstallSection } from '@/components/landing/install-section';
+import { COMMANDS, MCP_CONFIG, SITE } from '@/lib/site-config';
 
 const fade = {
   initial: { opacity: 0, y: 28 },
@@ -60,7 +61,7 @@ export function LandingPage() {
               className="hidden rounded-full border-[#1E293B] bg-transparent text-[#F3F4F6]/70 sm:inline-flex"
               asChild
             >
-              <a href="https://github.com/vihaannarkhede29/contextos" target="_blank" rel="noreferrer">
+              <a href={SITE.github} target="_blank" rel="noreferrer">
                 GitHub
               </a>
             </Button>
@@ -207,7 +208,7 @@ export function LandingPage() {
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Button variant="outline" size="lg" className="rounded-full border-[#1E293B] px-6" asChild>
-              <a href="https://github.com/vihaannarkhede29/contextos" target="_blank" rel="noreferrer">
+              <a href={SITE.github} target="_blank" rel="noreferrer">
                 View on GitHub
               </a>
             </Button>
@@ -282,51 +283,13 @@ export function LandingPage() {
               </ul>
             </div>
             <div className="border-t border-[#1E293B] bg-[#0B0F19] p-6 font-mono text-xs leading-relaxed text-[#F3F4F6]/55 lg:border-l lg:border-t-0">
-              <pre className="overflow-x-auto">{`{
-  "mcpServers": {
-    "contextosai": {
-      "command": "contextosai",
-      "args": ["mcp"],
-      "env": {
-        "CONTEXTOS_ROOT": "\${workspaceFolder}"
-      }
-    }
-  }
-}`}</pre>
+              <pre className="overflow-x-auto">{MCP_CONFIG}</pre>
             </div>
           </div>
         </motion.div>
       </section>
 
-      {/* Footer CTA — Weave dark band */}
-      <section id="install" className="bg-[#1a2332] px-6 py-28 md:py-36 lg:px-10">
-        <motion.div {...fade} className="mx-auto max-w-3xl text-center">
-          <Sparkles className="mx-auto h-7 w-7 text-[#10B981]" />
-          <h2 className="mt-6 font-serif text-4xl text-[#F3F4F6] md:text-5xl lg:text-[3.25rem]">
-            The memory layer for the AI coding era.
-          </h2>
-          <p className="mt-5 text-sm text-[#F3F4F6]/45">
-            Trusted by developers from side projects to production monorepos
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Button
-              variant="outline"
-              size="lg"
-              className="rounded-full border-[#F3F4F6]/15 bg-transparent px-7 text-[#F3F4F6]"
-              asChild
-            >
-              <a href="https://github.com/vihaannarkhede29/contextos" target="_blank" rel="noreferrer">
-                GitHub
-              </a>
-            </Button>
-            <Button size="lg" className="rounded-full px-7" asChild>
-              <Link href="/app">
-                Get started for free <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </motion.div>
-      </section>
+      <InstallSection />
 
       <footer className="px-6 py-14 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-5">
@@ -346,17 +309,23 @@ export function LandingPage() {
             {
               title: 'CLI',
               links: [
-                { label: 'contextosai init', href: '#install' },
-                { label: 'contextosai index', href: '#install' },
-                { label: 'contextosai watch', href: '#install' },
+                { label: COMMANDS.init, href: '#install' },
+                { label: COMMANDS.index, href: '#install' },
+                { label: COMMANDS.watch, href: '#install' },
+                { label: COMMANDS.search, href: '#install' },
               ],
             },
             {
-              title: 'Company',
+              title: 'Links',
               links: [
                 {
                   label: 'GitHub',
-                  href: 'https://github.com/vihaannarkhede29/contextos',
+                  href: SITE.github,
+                  external: true,
+                },
+                {
+                  label: 'npm',
+                  href: SITE.npm,
                   external: true,
                 },
               ],

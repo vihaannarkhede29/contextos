@@ -2,27 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { GlowCard } from '@/components/ui/spotlight-card';
-
-const steps = [
-  {
-    step: '01',
-    title: 'Install once',
-    command: 'npm install -g contextosai',
-    detail: 'One global CLI. Works in every project on your machine.',
-  },
-  {
-    step: '02',
-    title: 'Initialize & index',
-    command: 'contextosai init && contextosai index',
-    detail: 'Builds .contextos/ — SQLite, vectors, rules, and agent exports.',
-  },
-  {
-    step: '03',
-    title: 'Code like you have a senior dev in the room',
-    command: 'contextosai watch',
-    detail: 'Memory updates as you type. Cursor always knows your codebase.',
-  },
-];
+import { WORKFLOW_STEPS } from '@/lib/site-config';
 
 export function WorkflowSpotlight() {
   return (
@@ -42,7 +22,7 @@ export function WorkflowSpotlight() {
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-3 md:gap-8">
-          {steps.map((item, i) => (
+          {WORKFLOW_STEPS.map((item, i) => (
             <motion.div
               key={item.step}
               initial={{ opacity: 0, y: 24 }}

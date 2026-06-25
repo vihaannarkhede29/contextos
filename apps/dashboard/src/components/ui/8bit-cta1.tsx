@@ -17,8 +17,10 @@ interface CTA1Props {
   yoursLabel?: string;
 }
 
+import { COMMANDS, SITE } from '@/lib/site-config';
+
 export const contextOSComparisonRows: ComparisonRow[] = [
-  { feature: 'Setup', yours: 'contextosai init', theirs: 'Re-explain every chat' },
+  { feature: 'Setup', yours: COMMANDS.init, theirs: 'Re-explain every chat' },
   { feature: 'Cursor rules', yours: '+ Auto-export', theirs: '- Manual paste' },
   { feature: 'Code search', yours: '+ Semantic', theirs: '- grep only' },
   { feature: 'Git decisions', yours: '+ Learned', theirs: '- Forgotten' },
