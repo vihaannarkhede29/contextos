@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import {
   Activity,
-  Brain,
   GitBranch,
   Home,
   Layers,
@@ -12,6 +11,7 @@ import {
   Terminal,
   type LucideIcon,
 } from 'lucide-react';
+import { Logo } from '@/components/brand/logo';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -83,14 +83,8 @@ export function InteractiveDashboard({
       )}
     >
       <aside className="flex w-52 shrink-0 flex-col border-r border-[#1E293B] bg-[#0B0F19]/95">
-        <div className="flex items-center gap-2 border-b border-[#1E293B] px-4 py-4">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#10B981]/15">
-            <Brain className="h-3.5 w-3.5 text-[#10B981]" />
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-[#F3F4F6]">ContextOS</p>
-            <p className="text-[10px] text-[#F3F4F6]/50">Local memory layer</p>
-          </div>
+        <div className="border-b border-[#1E293B] px-4 py-4">
+          <Logo size="xs" subtitle="Local memory layer" />
         </div>
 
         <nav className="flex-1 space-y-0.5 p-3">

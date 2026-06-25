@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
-  Brain,
   Zap,
   Sparkles,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Logo } from '@/components/brand/logo';
 import { HeroSection } from '@/components/landing/hero-section';
 import { RadialGraph } from '@/components/landing/radial-graph';
 import { WorkspaceTabs } from '@/components/landing/workspace-tabs';
@@ -43,11 +43,8 @@ export function LandingPage() {
     <div className="min-h-screen bg-[#0B0F19] text-[#F3F4F6]">
       <header className="sticky top-0 z-50 border-b border-[#1E293B]/40 bg-[#0B0F19]/85 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#10B981]/15">
-              <Brain className="h-4 w-4 text-[#10B981]" />
-            </div>
-            <span className="text-base font-medium">ContextOS</span>
+          <Link href="/" className="flex items-center">
+            <Logo size="sm" />
           </Link>
           <nav className="hidden items-center gap-8 text-sm text-[#F3F4F6]/50 lg:flex">
             <a href="#product" className="hover:text-[#F3F4F6]">Product</a>
@@ -334,13 +331,8 @@ export function LandingPage() {
       <footer className="px-6 py-14 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2">
-              <Brain className="h-5 w-5 text-[#10B981]" />
-              <span className="font-medium">ContextOS</span>
-            </div>
-            <p className="mt-3 max-w-xs text-sm text-[#F3F4F6]/35">
-              Local-first memory for AI coding agents. MIT licensed.
-            </p>
+            <Logo size="sm" showWordmark subtitle="Local-first memory for AI agents" />
+            <p className="mt-3 max-w-xs text-sm text-[#F3F4F6]/35">MIT licensed.</p>
           </div>
           {[
             {

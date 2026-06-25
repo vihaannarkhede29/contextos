@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   Activity,
-  Brain,
   GitBranch,
   Home,
   Layers,
@@ -12,6 +11,7 @@ import {
   Terminal,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Logo } from '@/components/brand/logo';
 
 const links = [
   { href: '/app', label: 'Home', icon: Home },
@@ -26,14 +26,8 @@ export function Sidebar() {
 
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-64 flex-col border-r border-[#1E293B] bg-[#0B0F19]/95 backdrop-blur-xl">
-      <div className="flex items-center gap-2 border-b border-[#1E293B] px-6 py-5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#10B981]/15">
-          <Brain className="h-4 w-4 text-[#10B981]" />
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-[#F3F4F6]">ContextOS</p>
-          <p className="text-xs text-[#F3F4F6]/50">Local memory layer</p>
-        </div>
+      <div className="border-b border-[#1E293B] px-6 py-5">
+        <Logo size="sm" subtitle="Local memory layer" />
       </div>
       <nav className="flex-1 space-y-1 p-4">
         {links.map(({ href, label, icon: Icon }) => (

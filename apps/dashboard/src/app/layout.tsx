@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: 'ContextOS — Memory layer for AI coding agents',
   description:
     'Local-first codebase memory for Cursor, Claude Code, and AI agents. Semantic search, git decisions, architecture rules, and MCP — all on your machine.',
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
