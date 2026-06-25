@@ -10,7 +10,7 @@ import { searchRepository } from './search.js';
 
 export async function startMcpServer(rootPath: string): Promise<void> {
   const server = new Server(
-    { name: 'contextos', version: '0.1.0' },
+    { name: 'contextosai', version: '0.1.0' },
     { capabilities: { tools: {} } },
   );
 

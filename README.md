@@ -9,13 +9,13 @@ Everything runs locally. No cloud services. No authentication. No billing.
 ## Quick Start
 
 ```bash
-npm install -g contextos
+npm install -g contextosai
 
 cd your-project
-contextos init
-contextos index
-contextos search "authentication flow"
-contextos dashboard
+contextosai init
+contextosai index
+contextosai search "authentication flow"
+contextosai dashboard
 ```
 
 ## Agent Integration
@@ -28,7 +28,7 @@ After indexing, ContextOS automatically generates:
 Regenerate anytime:
 
 ```bash
-contextos export
+contextosai export
 ```
 
 ### MCP Server (Cursor)
@@ -38,8 +38,8 @@ Add to your Cursor MCP config:
 ```json
 {
   "mcpServers": {
-    "contextos": {
-      "command": "contextos",
+    "contextosai": {
+      "command": "contextosai",
       "args": ["mcp"],
       "env": {
         "CONTEXTOS_ROOT": "${workspaceFolder}"
@@ -55,15 +55,15 @@ Tools: `search_codebase`, `get_project_memory`, `get_architecture_rules`, `get_d
 
 | Command | Description |
 |---------|-------------|
-| `contextos init` | Initialize ContextOS in current repo |
-| `contextos index` | Index all supported files |
-| `contextos index --force` | Force full re-index (embedding provider reset) |
-| `contextos export` | Regenerate Cursor rules + AGENTS.md |
-| `contextos mcp` | Start MCP server (stdio) |
-| `contextos watch` | Watch for changes and re-index |
-| `contextos search "<query>"` | Semantic search |
-| `contextos stats` | Show indexing statistics |
-| `contextos dashboard` | Open local dashboard |
+| `contextosai init` | Initialize ContextOS in current repo |
+| `contextosai index` | Index all supported files |
+| `contextosai index --force` | Force full re-index (embedding provider reset) |
+| `contextosai export` | Regenerate Cursor rules + AGENTS.md |
+| `contextosai mcp` | Start MCP server (stdio) |
+| `contextosai watch` | Watch for changes and re-index |
+| `contextosai search "<query>"` | Semantic search |
+| `contextosai stats` | Show indexing statistics |
+| `contextosai dashboard` | Open local dashboard |
 
 ## Embeddings
 
@@ -75,14 +75,14 @@ ollama pull nomic-embed-text
 
 **Fallback:** Transformers.js (`Xenova/all-MiniLM-L6-v2`) when Ollama is unavailable.
 
-If you switch embedding providers, run `contextos index --force` to rebuild vectors.
+If you switch embedding providers, run `contextosai index --force` to rebuild vectors.
 
 ## Monorepo Structure
 
 ```
 apps/dashboard   — Next.js 15 dashboard UI
 apps/docs        — Documentation site
-packages/cli     — CLI (published as `contextos`)
+packages/cli     — CLI (published as `contextosai`)
 packages/core    — Indexing engine
 packages/shared  — Shared types and schemas
 ```
@@ -98,7 +98,7 @@ bash scripts/smoke-test.sh
 
 ## Deploy
 
-The marketing landing page and interactive demo can be hosted on Netlify or Vercel. The full local dashboard (`/app`) requires `contextos index` on your machine.
+The marketing landing page and interactive demo can be hosted on Netlify or Vercel. The full local dashboard (`/app`) requires `contextosai index` on your machine.
 
 ### Netlify (recommended)
 
@@ -128,10 +128,24 @@ npx vercel deploy --prod
 
 | Issue | Fix |
 |-------|-----|
-| Search returns 0% scores | Run `contextos index --force` |
-| Embedding dimension mismatch | Run `contextos index --force` after Ollama setup |
-| Dashboard not found | Reinstall: `npm install -g contextos` |
+| Search returns 0% scores | Run `contextosai index --force` |
+| Embedding dimension mismatch | Run `contextosai index --force` after Ollama setup |
+| Dashboard not found | Reinstall: `npm install -g contextosai` |
 | No decisions learned | Ensure git repo with migration-style commit messages |
+
+## Publish to npm
+
+1. Add `NPM_TOKEN` to GitHub repo secrets
+2. Tag and push: `git tag v0.1.0 && git push origin v0.1.0`
+3. GitHub Actions publishes `@contextos/shared`, `@contextos/core`, and `contextosai`
+
+Verify install on a clean machine:
+
+```bash
+npm install -g contextosai
+contextosai init && contextosai index
+contextosai dashboard
+```
 
 ## License
 

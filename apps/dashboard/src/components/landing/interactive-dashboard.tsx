@@ -116,7 +116,7 @@ export function InteractiveDashboard({
           <div className="rounded-lg border border-[#1E293B] bg-[#1E293B]/80 p-2.5 font-mono text-[10px] text-[#F3F4F6]/55">
             <div className="mb-0.5 flex items-center gap-1.5">
               <Terminal className="h-3 w-3 text-[#22C55E]" />
-              <span className="text-[#F3F4F6]/80">contextos watch</span>
+              <span className="text-[#F3F4F6]/80">contextosai watch</span>
             </div>
             <p className="text-[9px] text-[#F3F4F6]/40">66 indexed files</p>
           </div>

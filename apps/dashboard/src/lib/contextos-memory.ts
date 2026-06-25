@@ -11,6 +11,6 @@ export function readProjectMemory(): string {
       'utf-8',
     );
   } catch {
-    return '# No project memory yet\n\nRun `contextos index` to generate.';
+    return '# No project memory yet\n\nRun `contextosai index` to generate.';
   }
 }

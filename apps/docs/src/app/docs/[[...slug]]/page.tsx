@@ -11,11 +11,11 @@ ContextOS is a **local-first memory layer** for AI coding agents. It continuousl
 ## Quick Start
 
 \`\`\`bash
-npm install -g contextos
+npm install -g contextosai
 cd your-project
-contextos init
-contextos index
-contextos search "authentication flow"
+contextosai init
+contextosai index
+contextosai search "authentication flow"
 \`\`\`
 
 ## What ContextOS Does
@@ -45,11 +45,11 @@ npm install -g contextos
 ## From Source (Monorepo)
 
 \`\`\`bash
-git clone https://github.com/contextos/contextos.git
+git clone https://github.com/vihaannarkhede29/contextos.git
 cd contextos
 pnpm install
 pnpm build
-pnpm --filter contextos link --global
+pnpm --filter contextosai link --global
 \`\`\`
 
 ## Ollama Setup (Recommended)
@@ -64,33 +64,33 @@ ContextOS uses Ollama at \`http://localhost:11434\` by default. If unavailable, 
     title: 'CLI Commands',
     body: `# CLI Commands
 
-## contextos init
+## contextosai init
 
 Initialize ContextOS in the current repository. Creates a \`.contextos/\` directory.
 
-## contextos index
+## contextosai index
 
 Scan and index all supported files. Extracts symbols, generates embeddings, learns decisions, writes \`.contextos/project.md\`, and exports agent context.
 
 \`\`\`bash
-contextos index
-contextos index --incremental
-contextos index --force
+contextosai index
+contextosai index --incremental
+contextosai index --force
 \`\`\`
 
-## contextos export
+## contextosai export
 
 Regenerate \`.cursor/rules/contextos.mdc\` and \`AGENTS.md\` from the current index.
 
-## contextos mcp
+## contextosai mcp
 
 Start the MCP server (stdio) for Cursor integration.
 
 \`\`\`json
 {
   "mcpServers": {
-    "contextos": {
-      "command": "contextos",
+    "contextosai": {
+      "command": "contextosai",
       "args": ["mcp"],
       "env": { "CONTEXTOS_ROOT": "\${workspaceFolder}" }
     }
@@ -98,24 +98,24 @@ Start the MCP server (stdio) for Cursor integration.
 }
 \`\`\`
 
-## contextos watch
+## contextosai watch
 
 Watch for file changes and re-index incrementally.
 
-## contextos search
+## contextosai search
 
 Semantic search across indexed files.
 
 \`\`\`bash
-contextos search "authentication middleware"
-contextos search "database schema" --limit 5
+contextosai search "authentication middleware"
+contextosai search "database schema" --limit 5
 \`\`\`
 
-## contextos stats
+## contextosai stats
 
 Show indexing statistics.
 
-## contextos dashboard
+## contextosai dashboard
 
 Open the local dashboard at http://localhost:3000`,
   },
@@ -164,16 +164,16 @@ pnpm smoke
 
 ## Agent Integration
 
-- \`contextos export\` — regenerate Cursor rules
-- \`contextos mcp\` — MCP server for Cursor
+- \`contextosai export\` — regenerate Cursor rules
+- \`contextosai mcp\` — MCP server for Cursor
 
 ## Troubleshooting
 
 | Issue | Fix |
 |-------|-----|
-| Embedding dimension mismatch | \`contextos index --force\` |
+| Embedding dimension mismatch | \`contextosai index --force\` |
 | Ollama unavailable | \`ollama pull nomic-embed-text\` or use Transformers fallback |
-| Dashboard not found after global install | Reinstall \`contextos\` npm package |
+| Dashboard not found after global install | Reinstall \`contextosai\` npm package |
 
 ## Project Structure
 

@@ -1,11 +1,11 @@
 {
-  "name": "contextos",
+  "name": "contextosai",
   "version": "0.1.0",
   "description": "Local-first memory layer for AI coding agents",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "contextos": "./dist/index.js"
+    "contextosai": "./dist/index.js"
   },
   "files": ["dist", "dashboard"],
   "scripts": {

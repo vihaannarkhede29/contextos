@@ -35,13 +35,13 @@ function getRoot(): string {
 
 function requireInit(root: string): void {
   if (!isInitialized(root)) {
-    console.error(chalk.red('ContextOS not initialized. Run: contextos init'));
+    console.error(chalk.red('ContextOS not initialized. Run: contextosai init'));
     process.exit(1);
   }
 }
 
 program
-  .name('contextos')
+  .name('contextosai')
   .description('Local-first memory layer for AI coding agents')
   .version(pkg.version);
 
@@ -62,7 +62,7 @@ program
     saveConfig(root, config);
     console.log(chalk.green('✓ ContextOS initialized'));
     console.log(chalk.dim(`  Created .contextos/ in ${root}`));
-    console.log(chalk.dim('  Run: contextos index'));
+    console.log(chalk.dim('  Run: contextosai index'));
   });
 
 program
@@ -141,7 +141,7 @@ program
     try {
       const results = await searchRepository(root, query, parseInt(opts.limit, 10));
       if (results.length === 0) {
-        console.log(chalk.yellow('No results found. Run: contextos index'));
+        console.log(chalk.yellow('No results found. Run: contextosai index'));
         return;
       }
       for (const result of results) {

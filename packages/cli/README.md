@@ -1,10 +1,10 @@
-# contextos
+# contextosai
 
-Local-first memory layer for AI coding agents.
+Local-first memory layer for AI coding agents. Published npm package for the ContextOS monorepo.
 
 ```bash
-npm install -g contextos
-contextos init && contextos index
+npm install -g contextosai
+contextosai init && contextosai index
 ```
 
-See [README](https://github.com/contextos/contextos#readme) for full documentation.
+See [README](https://github.com/vihaannarkhede29/contextos#readme) for full documentation.

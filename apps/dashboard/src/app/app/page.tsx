@@ -63,7 +63,7 @@ export default async function HomePage() {
         <h2 className="text-lg font-semibold">Recent Activity</h2>
         {recentActivity.length === 0 ? (
           <p className="mt-4 text-sm text-muted-foreground">
-            No activity yet. Run <code className="text-primary">contextos watch</code> to track
+            No activity yet. Run <code className="text-primary">contextosai watch</code> to track
             changes.
           </p>
         ) : (

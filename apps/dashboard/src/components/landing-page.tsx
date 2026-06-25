@@ -287,8 +287,8 @@ export function LandingPage() {
             <div className="border-t border-[#1E293B] bg-[#0B0F19] p-6 font-mono text-xs leading-relaxed text-[#F3F4F6]/55 lg:border-l lg:border-t-0">
               <pre className="overflow-x-auto">{`{
   "mcpServers": {
-    "contextos": {
-      "command": "contextos",
+    "contextosai": {
+      "command": "contextosai",
       "args": ["mcp"],
       "env": {
         "CONTEXTOS_ROOT": "\${workspaceFolder}"
@@ -354,9 +354,9 @@ export function LandingPage() {
             {
               title: 'CLI',
               links: [
-                { label: 'contextos init', href: '#install' },
-                { label: 'contextos index', href: '#install' },
-                { label: 'contextos watch', href: '#install' },
+                { label: 'contextosai init', href: '#install' },
+                { label: 'contextosai index', href: '#install' },
+                { label: 'contextosai watch', href: '#install' },
               ],
             },
             {

@@ -14,7 +14,7 @@ export class EmbeddingDimensionMismatchError extends Error {
     public readonly queryDimensions: number,
   ) {
     super(
-      `Embedding dimension mismatch: index has ${indexDimensions} dims but query has ${queryDimensions}. Run: contextos index --force`,
+      `Embedding dimension mismatch: index has ${indexDimensions} dims but query has ${queryDimensions}. Run: contextosai index --force`,
     );
     this.name = 'EmbeddingDimensionMismatchError';
   }

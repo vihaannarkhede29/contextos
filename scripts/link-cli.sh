@@ -9,9 +9,9 @@ npm config set prefix "$PREFIX"
 
 echo "Building CLI..."
 cd "$ROOT"
-npx pnpm@9.15.0 --filter contextos build
+npx pnpm@9.15.0 --filter contextosai build
 
-echo "Linking contextos to $PREFIX/bin ..."
+echo "Linking contextosai to $PREFIX/bin ..."
 cd "$ROOT/packages/cli"
 npm link
 
@@ -19,4 +19,4 @@ echo ""
 echo "Done. Ensure this is in your PATH (add to ~/.zshrc if needed):"
 echo "  export PATH=\"$PREFIX/bin:\$PATH\""
 echo ""
-echo "Then run: contextos --version"
+echo "Then run: contextosai --version"

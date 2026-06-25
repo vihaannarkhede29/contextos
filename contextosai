@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Local dev wrapper — run from repo root without global install
+DIR="$(cd "$(dirname "$0")" && pwd)"
+exec node "$DIR/packages/cli/dist/index.js" "$@"

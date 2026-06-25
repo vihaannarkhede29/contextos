@@ -31,7 +31,7 @@ export default async function ActivityPage() {
         <CardContent>
           {activity.length === 0 ? (
             <p className="py-8 text-center text-muted-foreground">
-              No activity recorded. Run <code className="text-primary">contextos watch</code> to
+              No activity recorded. Run <code className="text-primary">contextosai watch</code> to
               track file changes.
             </p>
           ) : (

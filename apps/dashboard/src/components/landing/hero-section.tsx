@@ -66,12 +66,12 @@ export function HeroSection() {
             <div className="flex items-center gap-2 rounded-xl border border-[#1E293B] bg-[#141b2d]/80 p-1.5 pl-4 shadow-[0_0_40px_-12px_rgba(16,185,129,0.25)] backdrop-blur-sm">
               <Terminal className="h-4 w-4 shrink-0 text-[#10B981]/70" />
               <code className="flex-1 truncate text-left font-mono text-sm text-[#22C55E]">
-                npm install -g contextos
+                npm install -g contextosai
               </code>
               <button
                 type="button"
                 onClick={() => {
-                  void navigator.clipboard.writeText('npm install -g contextos');
+                  void navigator.clipboard.writeText('npm install -g contextosai');
                   setCopied(true);
                   setTimeout(() => setCopied(false), 2000);
                 }}

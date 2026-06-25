@@ -7,19 +7,19 @@ const steps = [
   {
     step: '01',
     title: 'Install once',
-    command: 'npm install -g contextos',
+    command: 'npm install -g contextosai',
     detail: 'One global CLI. Works in every project on your machine.',
   },
   {
     step: '02',
     title: 'Initialize & index',
-    command: 'contextos init && contextos index',
+    command: 'contextosai init && contextosai index',
     detail: 'Builds .contextos/ — SQLite, vectors, rules, and agent exports.',
   },
   {
     step: '03',
     title: 'Code like you have a senior dev in the room',
-    command: 'contextos watch',
+    command: 'contextosai watch',
     detail: 'Memory updates as you type. Cursor always knows your codebase.',
   },
 ];

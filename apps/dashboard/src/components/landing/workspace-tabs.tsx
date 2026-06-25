@@ -56,7 +56,7 @@ const tabs: Tab[] = [
     label: 'Live Watch',
     icon: Eye,
     title: 'Memory that never rots.',
-    body: 'contextos watch re-indexes on save. Vectors, rules, and agent exports refresh incrementally — your IDE context stays as current as your last commit.',
+    body: 'contextosai watch re-indexes on save. Vectors, rules, and agent exports refresh incrementally — your IDE context stays as current as your last commit.',
     demoView: 'activity',
   },
   {
@@ -79,7 +79,7 @@ const tabs: Tab[] = [
     label: 'Agent Export',
     icon: FileCode2,
     title: 'Zero-config Cursor integration.',
-    body: 'Every index writes .cursor/rules/contextos.mdc and AGENTS.md from live project state. Regenerate anytime with contextos export.',
+    body: 'Every index writes .cursor/rules/contextos.mdc and AGENTS.md from live project state. Regenerate anytime with contextosai export.',
     preview: {
       label: 'exported files',
       rows: [

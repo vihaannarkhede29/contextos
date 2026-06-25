@@ -66,7 +66,7 @@ export const DEMO_SEARCH_RESULTS = [
   {
     path: 'packages/cli/README.md',
     score: 0.641,
-    summary: 'Install: npm install -g contextos\nCommands: init, index, watch, search, dashboard, mcp',
+    summary: 'Install: npm install -g contextosai\nCommands: init, index, watch, search, dashboard, mcp',
   },
   {
     path: 'apps/dashboard/src/app/api/stats/route.ts',
@@ -84,7 +84,7 @@ export const DEMO_SEARCH_RESULTS = [
 export const DEMO_DECISIONS = [
   {
     title: 'Adopt SQLite WAL mode',
-    decision: 'Use WAL journaling for concurrent reads during contextos watch',
+    decision: 'Use WAL journaling for concurrent reads during contextosai watch',
     confidence: 0.92,
     source: 'git commit',
     date: 'Jun 12, 2026',

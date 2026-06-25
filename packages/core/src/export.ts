@@ -12,7 +12,7 @@ export function readProjectMemoryContent(rootPath: string): string {
   try {
     return readFileSync(join(getContextOSPath(rootPath), PROJECT_MEMORY_FILE), 'utf-8');
   } catch {
-    return 'No project memory yet. Run `contextos index`.';
+    return 'No project memory yet. Run `contextosai index`.';
   }
 }
 
