@@ -1,0 +1,30 @@
+{
+  "name": "contextos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first memory layer for AI coding agents",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx turbo run build",
+    "dev": "npx turbo run dev",
+    "lint": "npx turbo run lint",
+    "test": "npx turbo run test",
+    "smoke": "bash scripts/smoke-test.sh",
+    "bundle-dashboard": "node packages/cli/scripts/bundle-dashboard.mjs",
+    "dashboard": "node scripts/refresh-dashboard.mjs",
+    "ctx": "node packages/cli/dist/index.js",
+    "link-cli": "bash scripts/link-cli.sh",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

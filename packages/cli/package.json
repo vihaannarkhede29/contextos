@@ -1,0 +1,43 @@
+{
+  "name": "contextos",
+  "version": "0.1.0",
+  "description": "Local-first memory layer for AI coding agents",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "contextos": "./dist/index.js"
+  },
+  "files": ["dist", "dashboard"],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "bundle-dashboard": "node scripts/bundle-dashboard.mjs",
+    "link-cli": "bash ../../scripts/link-cli.sh",
+    "prepack": "pnpm run build && pnpm run bundle-dashboard"
+  },
+  "dependencies": {
+    "@contextos/core": "workspace:*",
+    "@contextos/shared": "workspace:*",
+    "chalk": "^5.4.1",
+    "commander": "^12.1.0",
+    "open": "^10.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vihaannarkhede29/contextos.git"
+  },
+  "homepage": "https://github.com/vihaannarkhede29/contextos#readme",
+  "keywords": ["ai", "cursor", "codebase", "memory", "embeddings", "mcp", "local-first"],
+  "engines": {
+    "node": ">=20"
+  }
+}

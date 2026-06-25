@@ -1,0 +1,133 @@
+export type DemoView = 'home' | 'search' | 'architecture' | 'decisions' | 'activity';
+
+export const DEMO_FRAMEWORKS = [
+  { name: 'Next.js', confidence: 0.65 },
+  { name: 'React', confidence: 0.65 },
+  { name: 'TailwindCSS', confidence: 0.65 },
+  { name: 'shadcn/ui', confidence: 0.65 },
+  { name: 'Vitest', confidence: 0.65 },
+  { name: 'Framer Motion', confidence: 0.65 },
+  { name: 'FastAPI', confidence: 0.65 },
+  { name: 'PostgreSQL', confidence: 0.65 },
+  { name: 'Prisma', confidence: 0.65 },
+];
+
+export const DEMO_CONVENTIONS = [
+  {
+    name: 'Colocated Tests',
+    description: 'Tests are colocated with source files',
+  },
+];
+
+export const DEMO_MODULES = [
+  {
+    name: 'UI Components',
+    description: 'apps/dashboard/src/components/ui',
+  },
+];
+
+export const DEMO_DEPS = [
+  { dep: "import { join } from 'node:path';", count: 11 },
+  { dep: "import { cn } from '@/lib/utils';", count: 9 },
+  { dep: "import { describe, it, expect } from 'vitest';", count: 8 },
+  { dep: "import { useState } from 'react';", count: 7 },
+  { dep: "import { motion } from 'framer-motion';", count: 6 },
+];
+
+export const DEMO_PROJECT_MEMORY = `# Project Overview
+- Framework: Next.js
+- Monorepo with pnpm workspaces
+
+## Architecture Rules
+- Next.js App Router in apps/dashboard
+- shadcn/ui components in components/ui
+- Local SQLite + LanceDB for vectors
+
+## Important modules
+- packages/core — indexer, database, embeddings
+- packages/cli — contextos commands + MCP
+
+## Indexed Files
+Total: 66 files`;
+
+export const DEMO_SEARCH_RESULTS = [
+  {
+    path: 'README.md',
+    score: 0.687,
+    summary:
+      'Local-first memory layer for AI coding agents. ContextOS continuously learns your repository and surfaces architectural knowledge for Cursor, Claude Code, and Aider.',
+  },
+  {
+    path: 'packages/core/src/config.ts',
+    score: 0.652,
+    summary:
+      'Functions: getContextOSPath, getConfigPath, loadConfig, saveConfig\nImports: createHash, randomUUID, existsSync, readFileSync',
+  },
+  {
+    path: 'packages/cli/README.md',
+    score: 0.641,
+    summary: 'Install: npm install -g contextos\nCommands: init, index, watch, search, dashboard, mcp',
+  },
+  {
+    path: 'apps/dashboard/src/app/api/stats/route.ts',
+    score: 0.608,
+    summary: 'GET handler — returns indexing stats from ContextDatabase',
+  },
+  {
+    path: 'apps/dashboard/src/lib/contextos-memory.ts',
+    score: 0.591,
+    summary:
+      'readProjectMemory — reads .contextos/project.md for dashboard display',
+  },
+];
+
+export const DEMO_DECISIONS = [
+  {
+    title: 'Adopt SQLite WAL mode',
+    decision: 'Use WAL journaling for concurrent reads during contextos watch',
+    confidence: 0.92,
+    source: 'git commit',
+    date: 'Jun 12, 2026',
+  },
+  {
+    title: 'Bundle dashboard into CLI',
+    decision: 'Ship Next.js standalone in packages/cli/dashboard for npm install',
+    confidence: 0.88,
+    source: 'git commit',
+    date: 'Jun 18, 2026',
+  },
+  {
+    title: 'MCP over stdio only',
+    decision: 'Reject HTTP MCP — local-first, no network surface',
+    confidence: 0.85,
+    source: 'git commit',
+    date: 'Jun 20, 2026',
+  },
+];
+
+export const DEMO_ACTIVITY = [
+  { action: 'modified' as const, path: 'AGENTS.md', time: '11:55:53 AM' },
+  { action: 'modified' as const, path: '.cursor/rules/contextos.mdc', time: '11:55:52 AM' },
+  { action: 'modified' as const, path: 'apps/dashboard/src/components/landing-page.tsx', time: '11:54:01 AM' },
+  { action: 'modified' as const, path: 'packages/core/src/indexer.ts', time: '11:52:18 AM' },
+  { action: 'modified' as const, path: '.contextos/project.md', time: '11:51:44 AM' },
+];
+
+export const DEMO_STATS = {
+  filesIndexed: 66,
+  decisionsLearned: 8,
+  rulesExtracted: 11,
+  lastIndexed: 'Jun 25, 2026',
+};
+
+export function mockSearch(query: string) {
+  const q = query.toLowerCase().trim();
+  if (!q) return [];
+  const words = q.split(/\s+/);
+  return DEMO_SEARCH_RESULTS.filter(
+    (r) =>
+      r.path.toLowerCase().includes(q) ||
+      r.summary.toLowerCase().includes(q) ||
+      words.some((w) => r.summary.toLowerCase().includes(w) || r.path.toLowerCase().includes(w)),
+  );
+}

@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base 60% — #0B0F19 obsidian */
+    --background: 225 38% 7%;
+    --foreground: 220 14% 96%; /* #F3F4F6 */
+
+    /* Structure 30% — #1E293B slate cards */
+    --card: 217 33% 17%;
+    --card-foreground: 220 14% 96%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 220 14% 96%;
+    --muted: 217 28% 14%;
+    --muted-foreground: 215 16% 57%;
+    --accent: 217 33% 20%;
+    --accent-foreground: 220 14% 96%;
+    --border: 217 25% 22%;
+    --input: 217 33% 17%;
+
+    /* Hero 10% — #10B981 emerald CTAs */
+    --primary: 160 84% 39%;
+    --primary-foreground: 220 14% 96%;
+    --ring: 160 84% 39%;
+
+    /* Terminal accent — #22C55E */
+    --terminal: 142 71% 45%;
+
+    --radius: 0.625rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-color: #0b0f19;
+    background-image:
+      radial-gradient(ellipse 70% 45% at 50% -15%, rgb(16 185 129 / 0.08), transparent),
+      radial-gradient(ellipse 50% 35% at 100% 100%, rgb(30 41 59 / 0.5), transparent);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply border border-[#1e293b]/80 bg-[#1e293b]/60 backdrop-blur-md;
+  }
+
+  .terminal-block {
+    @apply bg-[#1e293b] text-[#f3f4f6];
+  }
+
+  .text-terminal {
+    color: #22c55e;
+  }
+
+  .btn-hero {
+    @apply bg-[#10b981] text-[#f3f4f6] shadow-lg shadow-emerald-500/20 hover:bg-[#0ea472];
+  }
+
+  .landing-grid {
+    background-image:
+      linear-gradient(to right, rgb(30 41 59 / 0.35) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(30 41 59 / 0.35) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 50%, transparent 100%);
+  }
+
+  .glow-emerald {
+    box-shadow:
+      0 0 0 1px rgb(16 185 129 / 0.15),
+      0 0 60px -12px rgb(16 185 129 / 0.35);
+  }
+
+  .text-gradient-hero {
+    @apply bg-gradient-to-r from-[#10B981] via-[#34d399] to-[#22C55E] bg-clip-text text-transparent;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      110deg,
+      transparent 25%,
+      rgb(16 185 129 / 0.08) 50%,
+      transparent 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 8s ease-in-out infinite;
+  }
+
+  .font-serif-display {
+    font-family: var(--font-serif), ui-serif, Georgia, serif;
+  }
+
+  .landing-section {
+    @apply border-b border-[#1e293b]/40;
+  }
+
+  .landing-pill {
+    @apply rounded-full;
+  }
+
+  .retro {
+    font-family: var(--font-retro), ui-monospace, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .pixel-border {
+    box-shadow:
+      -4px 0 0 0 #10b981,
+      4px 0 0 0 #10b981,
+      0 4px 0 0 #10b981,
+      0 -4px 0 0 #10b981,
+      -4px 4px 0 0 #0b0f19,
+      4px 4px 0 0 #0b0f19,
+      -4px -4px 0 0 #0b0f19,
+      4px -4px 0 0 #0b0f19;
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -200% 0;
+  }
+}
