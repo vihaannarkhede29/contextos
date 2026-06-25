@@ -39,7 +39,7 @@ contextosai search "authentication flow"
 ## Global Install
 
 \`\`\`bash
-npm install -g contextos
+npm install -g contextosai
 \`\`\`
 
 ## From Source (Monorepo)
