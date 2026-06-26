@@ -10,7 +10,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Missing query' }, { status: 400 });
   }
   try {
-    const { searchRepository } = await import('@contextos/core/search');
+    const { searchRepository } = await import('@contextosai/core/search');
     const results = await searchRepository(getProjectRoot(), q);
     return NextResponse.json(results);
   } catch (error) {

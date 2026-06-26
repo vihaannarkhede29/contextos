@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { ContextDatabase } from './database.js';
 import { exportAgentContext } from './export.js';
 import { saveConfig } from './config.js';
-import { ContextOSConfigSchema } from '@contextos/shared';
+import { ContextOSConfigSchema } from '@contextosai/shared';
 
 describe('exportAgentContext', () => {
   let dir: string;

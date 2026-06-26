@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { simpleGit } from 'simple-git';
-import type { DecisionRecord } from '@contextos/shared';
+import type { DecisionRecord } from '@contextosai/shared';
 import { hashContent } from './config.js';
 
 const MIGRATION_PATTERNS: Array<{

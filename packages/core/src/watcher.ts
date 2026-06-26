@@ -1,6 +1,6 @@
 import chokidar, { type FSWatcher } from 'chokidar';
 import { relative } from 'node:path';
-import { IGNORED_DIRS, SUPPORTED_EXTENSIONS } from '@contextos/shared';
+import { IGNORED_DIRS, SUPPORTED_EXTENSIONS } from '@contextosai/shared';
 import { generateId } from './config.js';
 import { Indexer } from './indexer.js';
 

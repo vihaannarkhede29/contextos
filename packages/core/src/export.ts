@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { PROJECT_MEMORY_FILE } from '@contextos/shared';
+import { PROJECT_MEMORY_FILE } from '@contextosai/shared';
 import { ContextDatabase } from './database.js';
 import { getContextOSPath, loadConfig } from './config.js';
 import { readFileSync } from 'node:fs';

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { extractArchitectureRules } from './rules.js';
-import type { FileMetadata } from '@contextos/shared';
+import type { FileMetadata } from '@contextosai/shared';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';

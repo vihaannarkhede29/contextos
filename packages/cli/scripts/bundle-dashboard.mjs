@@ -28,7 +28,7 @@ function deployWorkspacePackage(filter, destDir) {
 }
 
 function fixPackageSymlink(bundleRoot, packageName) {
-  const linkDir = join(bundleRoot, 'apps/dashboard/node_modules/@contextos');
+  const linkDir = join(bundleRoot, 'apps/dashboard/node_modules/@contextosaiai');
   const linkPath = join(linkDir, packageName);
   mkdirSync(linkDir, { recursive: true });
   if (existsSync(linkPath)) {
@@ -43,11 +43,11 @@ function patchStandaloneBundle(bundleRoot) {
   const sharedDest = join(bundleRoot, 'packages/shared');
   const coreDest = join(bundleRoot, 'packages/core');
 
-  deployWorkspacePackage('@contextos/shared', sharedDest);
-  deployWorkspacePackage('@contextos/core', coreDest);
+  deployWorkspacePackage('@contextosai/shared', sharedDest);
+  deployWorkspacePackage('@contextosai/core', coreDest);
 
-  const sharedLink = join(coreDest, 'node_modules/@contextos/shared');
-  mkdirSync(join(coreDest, 'node_modules/@contextos'), { recursive: true });
+  const sharedLink = join(coreDest, 'node_modules/@contextosaiaiai/shared');
+  mkdirSync(join(coreDest, 'node_modules/@contextosaiai'), { recursive: true });
   if (existsSync(sharedLink)) {
     rmSync(sharedLink, { recursive: true, force: true });
   }
@@ -56,11 +56,11 @@ function patchStandaloneBundle(bundleRoot) {
   fixPackageSymlink(bundleRoot, 'core');
   fixPackageSymlink(bundleRoot, 'shared');
 
-  console.log('  Deployed @contextos/shared and @contextos/core with runtime deps');
+  console.log('  Deployed @contextosai/shared and @contextosai/core with runtime deps');
 }
 
 console.log('Building dashboard...');
-const build = spawn('npx', ['pnpm@9.15.0', '--filter', '@contextos/dashboard', 'build'], {
+const build = spawn('npx', ['pnpm@9.15.0', '--filter', '@contextosai/dashboard', 'build'], {
   cwd: monorepoRoot,
   stdio: 'inherit',
 });
@@ -120,7 +120,7 @@ build.on('exit', (code) => {
     process.execPath,
     [
       '-e',
-      "const { ContextDatabase } = require('@contextos/core/database'); const db = new ContextDatabase(process.env.CONTEXTOS_ROOT); db.close();",
+      "const { ContextDatabase } = require('@contextosai/core/database'); const db = new ContextDatabase(process.env.CONTEXTOS_ROOT); db.close();",
     ],
     {
       cwd: join(cliDashboard, 'apps/dashboard'),

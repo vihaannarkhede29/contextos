@@ -4,7 +4,7 @@ import {
   IGNORED_DIRS,
   IGNORED_FILE_PATTERNS,
   SUPPORTED_EXTENSIONS,
-} from '@contextos/shared';
+} from '@contextosai/shared';
 
 export interface ScannedFile {
   absolutePath: string;

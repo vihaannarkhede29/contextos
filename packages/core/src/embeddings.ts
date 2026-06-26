@@ -1,5 +1,5 @@
-import type { ContextOSConfig } from '@contextos/shared';
-import { DEFAULT_OLLAMA_URL } from '@contextos/shared';
+import type { ContextOSConfig } from '@contextosai/shared';
+import { DEFAULT_OLLAMA_URL } from '@contextosai/shared';
 
 export interface EmbeddingProvider {
   embed(text: string): Promise<number[]>;

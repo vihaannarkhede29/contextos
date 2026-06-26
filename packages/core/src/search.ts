@@ -1,4 +1,4 @@
-import type { SearchResult } from '@contextos/shared';
+import type { SearchResult } from '@contextosai/shared';
 import { loadConfig } from './config.js';
 import {
   createEmbeddingProvider,

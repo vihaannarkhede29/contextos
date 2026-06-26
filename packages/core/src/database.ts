@@ -7,8 +7,8 @@ import type {
   DecisionRecord,
   FileMetadata,
   IndexStats,
-} from '@contextos/shared';
-import { CONTEXTOS_DB } from '@contextos/shared';
+} from '@contextosai/shared';
+import { CONTEXTOS_DB } from '@contextosai/shared';
 import { getContextOSPath } from './config.js';
 
 export class ContextDatabase {

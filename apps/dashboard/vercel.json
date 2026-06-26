@@ -1,5 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "cd ../.. && corepack enable && pnpm install",
-  "buildCommand": "cd ../.. && pnpm turbo run build --filter=@contextos/dashboard"
+  "buildCommand": "cd ../.. && pnpm turbo run build --filter=@contextosai/dashboard"
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@contextos/shared",
+  "name": "@contextosai/shared",
   "version": "0.1.0",
   "description": "Shared types and schemas for ContextOS",
   "license": "MIT",

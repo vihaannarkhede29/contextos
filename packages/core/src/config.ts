@@ -6,7 +6,7 @@ import {
   CONFIG_FILE,
   ContextOSConfig,
   ContextOSConfigSchema,
-} from '@contextos/shared';
+} from '@contextosai/shared';
 
 export function getContextOSPath(rootPath: string): string {
   return join(rootPath, CONTEXTOS_DIR);

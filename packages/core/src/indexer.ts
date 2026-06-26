@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { FileMetadata } from '@contextos/shared';
+import type { FileMetadata } from '@contextosai/shared';
 import type { EmbeddingProvider } from './embeddings.js';
 import { ensureContextOSDir, generateId, hashContent, loadConfig, saveConfig } from './config.js';
 import { ContextDatabase } from './database.js';

@@ -137,7 +137,7 @@ npx vercel deploy --prod
 
 1. Add `NPM_TOKEN` to GitHub repo secrets
 2. Tag and push: `git tag v0.1.0 && git push origin v0.1.0`
-3. GitHub Actions publishes `@contextos/shared`, `@contextos/core`, and `contextosai`
+3. GitHub Actions publishes `@contextosai/shared`, `@contextosai/core`, and `contextosai`
 
 Verify install on a clean machine:
 

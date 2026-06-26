@@ -1,6 +1,6 @@
 [build]
   base = "apps/dashboard"
-  command = "cd ../.. && corepack enable && pnpm install && pnpm turbo run build --filter=@contextos/dashboard"
+  command = "cd ../.. && corepack enable && pnpm install && pnpm turbo run build --filter=@contextosai/dashboard"
   publish = ".next"
 
 [build.environment]

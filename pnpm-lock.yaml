@@ -23,10 +23,10 @@ importers:
 
   apps/dashboard:
     dependencies:
-      '@contextos/core':
+      '@contextosai/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@contextos/shared':
+      '@contextosai/shared':
         specifier: workspace:*
         version: link:../../packages/shared
       '@radix-ui/react-dialog':
@@ -151,10 +151,10 @@ importers:
 
   packages/cli:
     dependencies:
-      '@contextos/core':
+      '@contextosai/core':
         specifier: workspace:*
         version: link:../core
-      '@contextos/shared':
+      '@contextosai/shared':
         specifier: workspace:*
         version: link:../shared
       chalk:
@@ -176,7 +176,7 @@ importers:
 
   packages/core:
     dependencies:
-      '@contextos/shared':
+      '@contextosai/shared':
         specifier: workspace:*
         version: link:../shared
       '@lancedb/lancedb':

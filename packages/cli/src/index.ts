@@ -17,8 +17,8 @@ import {
   exportAgentContextOnly,
   startMcpServer,
   EmbeddingDimensionMismatchError,
-} from '@contextos/core';
-import { ContextOSConfigSchema, DASHBOARD_PORT } from '@contextos/shared';
+} from '@contextosai/core';
+import { ContextOSConfigSchema, DASHBOARD_PORT } from '@contextosai/shared';
 import open from 'open';
 import { killPort } from './kill-port.js';
 
@@ -213,7 +213,7 @@ program
       console.log(chalk.cyan(`Starting dashboard (dev) at ${url}...`));
       const child = spawn(
         'npx',
-        ['pnpm@9.15.0', '--filter', '@contextos/dashboard', 'dev'],
+        ['pnpm@9.15.0', '--filter', '@contextosai/dashboard', 'dev'],
         {
           cwd: join(cliDir, '../../..'),
           stdio: 'inherit',

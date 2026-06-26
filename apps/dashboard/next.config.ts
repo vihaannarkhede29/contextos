@@ -1,10 +1,10 @@
 import type { NextConfig } from 'next';
 
 const nativeExternals = [
-  '@contextos/core',
-  '@contextos/core/database',
-  '@contextos/core/config',
-  '@contextos/core/search',
+  '@contextosai/core',
+  '@contextosai/core/database',
+  '@contextosai/core/config',
+  '@contextosai/core/search',
   'better-sqlite3',
   '@lancedb/lancedb',
   '@xenova/transformers',
@@ -16,7 +16,7 @@ const nativeExternals = [
 
 const nextConfig: NextConfig = {
   output: 'standalone',
-  transpilePackages: ['@contextos/shared'],
+  transpilePackages: ['@contextosai/shared'],
   serverExternalPackages: nativeExternals,
   webpack: (config, { isServer }) => {
     if (isServer) {

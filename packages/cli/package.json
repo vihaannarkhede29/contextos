@@ -18,8 +18,8 @@
     "prepack": "pnpm run build && pnpm run bundle-dashboard"
   },
   "dependencies": {
-    "@contextos/core": "workspace:*",
-    "@contextos/shared": "workspace:*",
+    "@contextosai/core": "workspace:*",
+    "@contextosai/shared": "workspace:*",
     "chalk": "^5.4.1",
     "commander": "^12.1.0",
     "open": "^10.1.0"

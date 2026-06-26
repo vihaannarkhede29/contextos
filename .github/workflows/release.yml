@@ -35,8 +35,8 @@ jobs:
 
       - name: Publish packages
         run: |
-          pnpm --filter @contextos/shared publish --access public --no-git-checks
-          pnpm --filter @contextos/core publish --access public --no-git-checks
+          pnpm --filter @contextosai/shared publish --access public --no-git-checks
+          pnpm --filter @contextosai/core publish --access public --no-git-checks
           pnpm --filter contextosai publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

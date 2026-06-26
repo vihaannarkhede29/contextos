@@ -5,6 +5,6 @@ export function getProjectRoot(): string {
 }
 
 export async function getDatabase() {
-  const { ContextDatabase } = await import('@contextos/core/database');
+  const { ContextDatabase } = await import('@contextosai/core/database');
   return new ContextDatabase(getProjectRoot());
 }

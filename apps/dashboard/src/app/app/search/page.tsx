@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { formatPercent } from '@/lib/utils';
-import type { SearchResult } from '@contextos/shared';
+import type { SearchResult } from '@contextosai/shared';
 
 export default function SearchPage() {
   const [query, setQuery] = useState('');

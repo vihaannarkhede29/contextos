@@ -1,8 +1,8 @@
 import * as lancedb from '@lancedb/lancedb';
 import { join } from 'node:path';
 import { existsSync, mkdirSync } from 'node:fs';
-import { CONTEXTOS_LANCE } from '@contextos/shared';
-import type { SearchResult } from '@contextos/shared';
+import { CONTEXTOS_LANCE } from '@contextosai/shared';
+import type { SearchResult } from '@contextosai/shared';
 import { getContextOSPath } from './config.js';
 
 const TABLE_NAME = 'embeddings';

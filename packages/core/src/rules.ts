@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import type { ArchitectureRule, FileMetadata } from '@contextos/shared';
-import { FRAMEWORK_DEPS, FRAMEWORK_PATTERNS, PROJECT_MEMORY_FILE } from '@contextos/shared';
+import type { ArchitectureRule, FileMetadata } from '@contextosai/shared';
+import { FRAMEWORK_DEPS, FRAMEWORK_PATTERNS, PROJECT_MEMORY_FILE } from '@contextosai/shared';
 import { generateId } from './config.js';
 import { getContextOSPath } from './config.js';
 
