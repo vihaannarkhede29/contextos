@@ -28,7 +28,7 @@ function deployWorkspacePackage(filter, destDir) {
 }
 
 function fixPackageSymlink(bundleRoot, packageName) {
-  const linkDir = join(bundleRoot, 'apps/dashboard/node_modules/@contextosaiai');
+  const linkDir = join(bundleRoot, 'apps/dashboard/node_modules/@contextosai');
   const linkPath = join(linkDir, packageName);
   mkdirSync(linkDir, { recursive: true });
   if (existsSync(linkPath)) {
@@ -46,8 +46,8 @@ function patchStandaloneBundle(bundleRoot) {
   deployWorkspacePackage('@contextosai/shared', sharedDest);
   deployWorkspacePackage('@contextosai/core', coreDest);
 
-  const sharedLink = join(coreDest, 'node_modules/@contextosaiaiai/shared');
-  mkdirSync(join(coreDest, 'node_modules/@contextosaiai'), { recursive: true });
+  const sharedLink = join(coreDest, 'node_modules/@contextosai/shared');
+  mkdirSync(join(coreDest, 'node_modules/@contextosai'), { recursive: true });
   if (existsSync(sharedLink)) {
     rmSync(sharedLink, { recursive: true, force: true });
   }
