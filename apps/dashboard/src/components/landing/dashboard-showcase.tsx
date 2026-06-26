@@ -24,8 +24,8 @@ export function DashboardShowcase() {
             See your codebase the way agents do
           </h2>
           <p className="mt-5 text-sm leading-relaxed text-[#F3F4F6]/45">
-            Architecture rules, semantic search, and live activity — all in one local
-            dashboard. Try it right here.
+            76 files indexed, 11 rules extracted, 8 decisions learned — see the numbers and
+            Cursor export below. Click tabs to explore search, architecture, and activity.
           </p>
         </motion.div>
 
@@ -36,7 +36,7 @@ export function DashboardShowcase() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mx-auto mt-14 max-w-5xl"
         >
-          <InteractiveDashboard defaultView="search" />
+          <InteractiveDashboard defaultView="home" />
         </motion.div>
 
         <motion.div

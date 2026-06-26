@@ -6,12 +6,14 @@ import { ArrowRight, Check, Copy, Terminal } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { DashboardMock } from '@/components/landing/dashboard-mock';
+import { RulesImpactPanel } from '@/components/landing/rules-impact-panel';
+import { DEMO_STATS } from '@/components/landing/demo-data';
 import { COMMANDS, SITE } from '@/lib/site-config';
 
 const stats = [
-  { value: '100%', label: 'local' },
-  { value: '5', label: 'MCP tools' },
-  { value: '$0', label: 'subscription' },
+  { value: String(DEMO_STATS.filesIndexed), label: 'files indexed' },
+  { value: String(DEMO_STATS.rulesExtracted), label: 'rules extracted' },
+  { value: String(DEMO_STATS.decisionsLearned), label: 'decisions learned' },
 ];
 
 export function HeroSection() {
@@ -145,6 +147,15 @@ export function HeroSection() {
             ))}
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.32 }}
+          className="relative mx-auto mt-10 max-w-6xl sm:mt-14"
+        >
+          <RulesImpactPanel />
+        </motion.div>
 
         <DashboardMock />
       </div>

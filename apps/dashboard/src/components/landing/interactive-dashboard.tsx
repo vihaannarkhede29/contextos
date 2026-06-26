@@ -25,6 +25,7 @@ import {
   DEMO_DEPS,
   DEMO_FRAMEWORKS,
   DEMO_MODULES,
+  DEMO_CURSOR_EXPORT,
   DEMO_PROJECT_MEMORY,
   DEMO_SEARCH_RESULTS,
   DEMO_STATS,
@@ -133,7 +134,7 @@ export function InteractiveDashboard({
               <Terminal className="h-3 w-3 text-[#22C55E]" />
               <span className="text-[#F3F4F6]/80">contextosai watch</span>
             </div>
-            <p className="text-[9px] text-[#F3F4F6]/40">66 indexed files</p>
+            <p className="text-[9px] text-[#F3F4F6]/40">{DEMO_STATS.filesIndexed} indexed files</p>
           </div>
           <Link
             href="/app"
@@ -198,21 +199,36 @@ function HomeView({ compact }: { compact: boolean }) {
           </div>
         ))}
       </div>
-      <div className="mt-4 rounded-xl border border-border/50 bg-card/60 p-4 shadow backdrop-blur-md">
-        <h2 className="text-sm font-semibold">Recent Activity</h2>
-        <ul className="mt-3 space-y-2">
-          {DEMO_ACTIVITY.slice(0, 3).map((item) => (
-            <li
-              key={item.path + item.time}
-              className="flex items-center justify-between rounded-lg border border-border/30 bg-background/50 px-3 py-1.5 font-mono text-[11px]"
-            >
-              <span>
-                <span className="text-primary">{item.action}</span> {item.path}
-              </span>
-              <span className="text-[10px] text-muted-foreground">{item.time}</span>
-            </li>
-          ))}
-        </ul>
+      <div className="mt-4 grid gap-3 lg:grid-cols-2">
+        <div className="rounded-xl border border-border/50 bg-card/60 p-4 shadow backdrop-blur-md">
+          <h2 className="text-sm font-semibold">Rules exported to Cursor</h2>
+          <div className="mt-2 flex flex-wrap gap-1">
+            {DEMO_FRAMEWORKS.slice(0, 5).map((f) => (
+              <Badge key={f.name} className="bg-primary/20 text-primary text-[10px]">
+                {f.name}
+              </Badge>
+            ))}
+          </div>
+          <pre className="mt-3 max-h-28 overflow-auto rounded-lg border border-border/30 bg-background/50 p-2.5 font-mono text-[9px] text-muted-foreground whitespace-pre-wrap">
+            {DEMO_CURSOR_EXPORT}
+          </pre>
+        </div>
+        <div className="rounded-xl border border-border/50 bg-card/60 p-4 shadow backdrop-blur-md">
+          <h2 className="text-sm font-semibold">Recent Activity</h2>
+          <ul className="mt-3 space-y-2">
+            {DEMO_ACTIVITY.slice(0, 3).map((item) => (
+              <li
+                key={item.path + item.time}
+                className="flex items-center justify-between rounded-lg border border-border/30 bg-background/50 px-3 py-1.5 font-mono text-[11px]"
+              >
+                <span>
+                  <span className="text-primary">{item.action}</span> {item.path}
+                </span>
+                <span className="text-[10px] text-muted-foreground">{item.time}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
