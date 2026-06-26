@@ -6,57 +6,31 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const monorepoRoot = join(__dirname, '../../..');
+const cliRoot = join(__dirname, '..');
 const dashboardApp = join(monorepoRoot, 'apps/dashboard');
-const cliDashboard = join(__dirname, '../dashboard');
+const cliDashboard = join(cliRoot, 'dashboard');
 
-function deployWorkspacePackage(filter, destDir) {
-  if (existsSync(destDir)) {
-    rmSync(destDir, { recursive: true, force: true });
-  }
-  mkdirSync(destDir, { recursive: true });
-
-  const result = spawnSync(
-    'npx',
-    ['pnpm@9.15.0', '--filter', filter, 'deploy', destDir],
-    { cwd: monorepoRoot, stdio: 'inherit' },
-  );
-
-  if (result.status !== 0) {
-    console.error(`Failed to deploy ${filter}`);
-    process.exit(result.status ?? 1);
-  }
-}
-
-function fixPackageSymlink(bundleRoot, packageName) {
-  const linkDir = join(bundleRoot, 'apps/dashboard/node_modules/@contextosai');
-  const linkPath = join(linkDir, packageName);
-  mkdirSync(linkDir, { recursive: true });
-  if (existsSync(linkPath)) {
-    rmSync(linkPath, { recursive: true, force: true });
-  }
-  symlinkSync(`../../../../packages/${packageName}`, linkPath, 'dir');
-}
-
+/** Symlink bundled dashboard to CLI deps — avoids duplicating ~650MB of native modules in the tarball. */
 function patchStandaloneBundle(bundleRoot) {
-  console.log('Patching standalone bundle with workspace packages...');
+  console.log('Linking bundled dashboard to @contextosai packages...');
 
-  const sharedDest = join(bundleRoot, 'packages/shared');
-  const coreDest = join(bundleRoot, 'packages/core');
-
-  deployWorkspacePackage('@contextosai/shared', sharedDest);
-  deployWorkspacePackage('@contextosai/core', coreDest);
-
-  const sharedLink = join(coreDest, 'node_modules/@contextosai/shared');
-  mkdirSync(join(coreDest, 'node_modules/@contextosai'), { recursive: true });
-  if (existsSync(sharedLink)) {
-    rmSync(sharedLink, { recursive: true, force: true });
+  const packagesDir = join(bundleRoot, 'packages');
+  if (existsSync(packagesDir)) {
+    rmSync(packagesDir, { recursive: true, force: true });
   }
-  symlinkSync('../../../../shared', sharedLink, 'dir');
 
-  fixPackageSymlink(bundleRoot, 'core');
-  fixPackageSymlink(bundleRoot, 'shared');
+  const linkDir = join(bundleRoot, 'apps/dashboard/node_modules/@contextosai');
+  mkdirSync(linkDir, { recursive: true });
 
-  console.log('  Deployed @contextosai/shared and @contextosai/core with runtime deps');
+  for (const packageName of ['core', 'shared']) {
+    const linkPath = join(linkDir, packageName);
+    if (existsSync(linkPath)) {
+      rmSync(linkPath, { recursive: true, force: true });
+    }
+    symlinkSync(`../../../../../node_modules/@contextosai/${packageName}`, linkPath, 'dir');
+  }
+
+  console.log('  Linked @contextosai/core and @contextosai/shared from CLI node_modules');
 }
 
 console.log('Building dashboard...');
