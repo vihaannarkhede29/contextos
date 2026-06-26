@@ -1,19 +1,21 @@
 {
   "name": "contextosai",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Local-first memory layer for AI coding agents",
   "license": "MIT",
   "type": "module",
   "bin": {
     "contextosai": "./dist/index.js"
   },
-  "files": ["dist", "dashboard"],
+  "files": ["dist", "dashboard", "scripts"],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "lint": "tsc --noEmit",
     "test": "vitest run --passWithNoTests",
     "bundle-dashboard": "node scripts/bundle-dashboard.mjs",
+    "fix-dashboard-links": "node scripts/fix-dashboard-links.mjs",
+    "postinstall": "node scripts/fix-dashboard-links.mjs",
     "link-cli": "bash ../../scripts/link-cli.sh",
     "prepack": "pnpm run build && pnpm run bundle-dashboard"
   },

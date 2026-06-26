@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import { spawn, spawnSync } from 'node:child_process';
-import { cpSync, existsSync, mkdirSync, rmSync, symlinkSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { fixDashboardLinks } from './fix-dashboard-links.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const monorepoRoot = join(__dirname, '../../..');
@@ -10,27 +11,17 @@ const cliRoot = join(__dirname, '..');
 const dashboardApp = join(monorepoRoot, 'apps/dashboard');
 const cliDashboard = join(cliRoot, 'dashboard');
 
-/** Symlink bundled dashboard to CLI deps — avoids duplicating ~650MB of native modules in the tarball. */
+/** Restore module links npm pack strips from the standalone dashboard bundle. */
 function patchStandaloneBundle(bundleRoot) {
-  console.log('Linking bundled dashboard to @contextosai packages...');
+  console.log('Linking bundled dashboard runtime modules...');
 
   const packagesDir = join(bundleRoot, 'packages');
   if (existsSync(packagesDir)) {
     rmSync(packagesDir, { recursive: true, force: true });
   }
 
-  const linkDir = join(bundleRoot, 'apps/dashboard/node_modules/@contextosai');
-  mkdirSync(linkDir, { recursive: true });
-
-  for (const packageName of ['core', 'shared']) {
-    const linkPath = join(linkDir, packageName);
-    if (existsSync(linkPath)) {
-      rmSync(linkPath, { recursive: true, force: true });
-    }
-    symlinkSync(`../../../../../node_modules/@contextosai/${packageName}`, linkPath, 'dir');
-  }
-
-  console.log('  Linked @contextosai/core and @contextosai/shared from CLI node_modules');
+  fixDashboardLinks(cliRoot);
+  console.log('  Linked dashboard runtime modules');
 }
 
 console.log('Building dashboard...');
