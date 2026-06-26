@@ -21,8 +21,11 @@ export const metadata: Metadata = {
   description:
     'Local-first codebase memory for Cursor, Claude Code, and AI agents. Semantic search, git decisions, architecture rules, and MCP — all on your machine.',
   icons: {
-    icon: '/icon.svg',
-    apple: '/icon.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
 };
 

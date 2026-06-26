@@ -3,7 +3,7 @@ import { spawn, spawnSync } from 'node:child_process';
 import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { fixDashboardLinks } from './fix-dashboard-links.mjs';
+import { captureDashboardLinks, fixDashboardLinks, relinkOutsideSymlinks } from './fix-dashboard-links.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const monorepoRoot = join(__dirname, '../../..');
@@ -20,6 +20,8 @@ function patchStandaloneBundle(bundleRoot) {
     rmSync(packagesDir, { recursive: true, force: true });
   }
 
+  relinkOutsideSymlinks(bundleRoot);
+  captureDashboardLinks(cliRoot);
   fixDashboardLinks(cliRoot);
   console.log('  Linked dashboard runtime modules');
 }
@@ -49,7 +51,7 @@ build.on('exit', (code) => {
   }
   mkdirSync(cliDashboard, { recursive: true });
 
-  cpSync(standalone, cliDashboard, { recursive: true });
+  cpSync(standalone, cliDashboard, { recursive: true, verbatimSymlinks: true });
   patchStandaloneBundle(cliDashboard);
 
   const nestedApp = join(cliDashboard, 'apps/dashboard');

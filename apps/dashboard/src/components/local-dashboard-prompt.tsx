@@ -1,9 +1,15 @@
+'use client';
+
 import Link from 'next/link';
-import { Terminal } from 'lucide-react';
+import { useState } from 'react';
+import { Check, Copy, Terminal } from 'lucide-react';
 import { COMMANDS, SITE } from '@/lib/site-config';
 
+const QUICK_START = [COMMANDS.install, COMMANDS.initAndIndex, COMMANDS.dashboard] as const;
+
 export function LocalDashboardPrompt() {
-  const steps = [COMMANDS.install, 'cd your-project', COMMANDS.initAndIndex, COMMANDS.dashboard];
+  const [copied, setCopied] = useState(false);
+  const copyText = QUICK_START.join('\n');
 
   return (
     <div className="flex min-h-[calc(100vh-5rem)] items-center justify-center p-4 sm:p-8">
@@ -15,12 +21,36 @@ export function LocalDashboardPrompt() {
           <code className="text-[#22C55E]">.contextos/</code> from a project you index locally.
         </p>
 
-        <div className="mt-6 space-y-2 rounded-xl border border-[#0B0F19]/60 bg-[#0B0F19]/70 p-4">
-          <div className="mb-2 flex items-center gap-2 text-xs text-[#F3F4F6]/45">
-            <Terminal className="h-3.5 w-3.5 text-[#10B981]" />
-            Quick start
+        <div className="relative mt-6 rounded-xl border border-[#0B0F19]/60 bg-[#0B0F19]/70 p-4">
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 text-xs text-[#F3F4F6]/45">
+              <Terminal className="h-3.5 w-3.5 text-[#10B981]" />
+              Quick start
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                void navigator.clipboard.writeText(copyText);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }}
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-md px-2 py-1 text-xs text-[#F3F4F6]/50 transition hover:bg-[#1E293B] hover:text-[#F3F4F6]"
+              aria-label="Copy quick start commands"
+            >
+              {copied ? (
+                <>
+                  <Check className="h-3.5 w-3.5 text-[#22C55E]" />
+                  Copied
+                </>
+              ) : (
+                <>
+                  <Copy className="h-3.5 w-3.5" />
+                  Copy
+                </>
+              )}
+            </button>
           </div>
-          {steps.map((cmd) => (
+          {QUICK_START.map((cmd) => (
             <div key={cmd} className="font-mono text-sm text-[#22C55E]">
               <span className="text-[#F3F4F6]/35">$ </span>
               {cmd}
