@@ -35,8 +35,22 @@ jobs:
 
       - name: Publish packages
         run: |
-          pnpm --filter @contextosai/shared publish --access public --no-git-checks
-          pnpm --filter @contextosai/core publish --access public --no-git-checks
-          pnpm --filter contextosai publish --access public --no-git-checks
+          publish_pkg() {
+            set +e
+            output=$(pnpm --filter "$1" publish --access public --no-git-checks 2>&1)
+            status=$?
+            set -e
+            echo "$output"
+            if [ "$status" -ne 0 ]; then
+              if echo "$output" | grep -q "previously published"; then
+                echo "Skipping $1 — version already on npm"
+              else
+                exit "$status"
+              fi
+            fi
+          }
+          publish_pkg @contextosai/shared
+          publish_pkg @contextosai/core
+          publish_pkg contextosai
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
