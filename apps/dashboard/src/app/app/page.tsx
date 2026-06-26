@@ -42,9 +42,9 @@ export default async function HomePage() {
   ];
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 md:p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">Dashboard</h1>
         <p className="mt-1 text-muted-foreground">Repository memory overview</p>
       </div>
 

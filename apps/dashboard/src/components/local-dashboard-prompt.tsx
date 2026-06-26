@@ -6,8 +6,8 @@ export function LocalDashboardPrompt() {
   const steps = [COMMANDS.install, 'cd your-project', COMMANDS.initAndIndex, COMMANDS.dashboard];
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center p-8">
-      <div className="max-w-lg rounded-2xl border border-[#1E293B] bg-[#1E293B]/40 p-8 shadow-xl">
+    <div className="flex min-h-[calc(100vh-5rem)] items-center justify-center p-4 sm:p-8">
+      <div className="w-full max-w-lg rounded-2xl border border-[#1E293B] bg-[#1E293B]/40 p-5 sm:p-8 shadow-xl">
         <p className="text-xs font-medium uppercase tracking-widest text-[#10B981]">Local only</p>
         <h1 className="mt-3 text-2xl font-bold text-[#F3F4F6]">Dashboard runs on your machine</h1>
         <p className="mt-3 text-sm leading-relaxed text-[#F3F4F6]/55">

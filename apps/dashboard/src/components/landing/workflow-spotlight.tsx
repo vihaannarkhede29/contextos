@@ -6,7 +6,7 @@ import { WORKFLOW_STEPS } from '@/lib/site-config';
 
 export function WorkflowSpotlight() {
   return (
-    <section id="workflow" className="border-b border-[#1E293B]/40 px-6 py-24 md:py-32 lg:px-10">
+    <section id="workflow" className="border-b border-[#1E293B]/40 px-4 py-16 sm:px-6 sm:py-24 md:py-32 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -39,9 +39,9 @@ export function WorkflowSpotlight() {
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-[#F3F4F6]/50">
                     {item.detail}
                   </p>
-                  <div className="mt-6 rounded-lg border border-[#0B0F19]/60 bg-[#0B0F19]/70 px-4 py-3 font-mono text-sm">
+                  <div className="mt-6 rounded-lg border border-[#0B0F19]/60 bg-[#0B0F19]/70 px-3 py-2.5 font-mono text-xs sm:px-4 sm:py-3 sm:text-sm">
                     <span className="text-[#22C55E]">$ </span>
-                    <span className="text-[#F3F4F6]/90">{item.command}</span>
+                    <span className="break-all text-[#F3F4F6]/90">{item.command}</span>
                   </div>
                 </div>
               </GlowCard>

@@ -41,7 +41,7 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 md:p-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold">Search</h1>
         <p className="mt-1 text-muted-foreground">Semantic search across indexed files</p>

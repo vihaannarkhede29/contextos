@@ -53,7 +53,7 @@ export default function CTA1({
         )}
 
         <Card>
-          <CardHeader>
+          <CardHeader className="hidden md:block">
             <div className="grid gap-4 md:grid-cols-3">
               <CardTitle className="retro text-[10px] text-muted-foreground">FEATURE</CardTitle>
               <CardTitle className="retro text-center text-xs text-primary">{yoursLabel}</CardTitle>
@@ -65,12 +65,25 @@ export default function CTA1({
           <CardContent>
             <div className="flex flex-col divide-y divide-[#0B0F19]/60">
               {rows.map((row) => (
-                <div className="grid gap-4 py-3 md:grid-cols-3" key={row.feature}>
+                <div
+                  className="grid gap-2 py-3 md:grid-cols-3 md:gap-4 md:py-3"
+                  key={row.feature}
+                >
                   <span className="text-xs font-medium text-[#F3F4F6]/80">{row.feature}</span>
-                  <span className="retro text-center text-[10px] text-[#22C55E]">{row.yours}</span>
-                  <span className="retro text-center text-[10px] text-muted-foreground">
-                    {row.theirs}
-                  </span>
+                  <div className="flex items-center justify-between gap-3 md:contents">
+                    <span className="retro text-[10px] text-muted-foreground md:hidden">
+                      {theirsLabel}
+                    </span>
+                    <span className="retro text-[10px] text-muted-foreground md:text-center">
+                      {row.theirs}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 md:contents">
+                    <span className="retro text-[10px] text-primary md:hidden">{yoursLabel}</span>
+                    <span className="retro text-[10px] text-[#22C55E] md:text-center">
+                      {row.yours}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>

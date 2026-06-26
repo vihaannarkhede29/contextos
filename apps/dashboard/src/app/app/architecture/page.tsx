@@ -33,7 +33,7 @@ export default async function ArchitecturePage() {
   const projectMemory = readProjectMemory();
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 md:p-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold">Architecture</h1>
         <p className="mt-1 text-muted-foreground">Frameworks, conventions, and project structure</p>

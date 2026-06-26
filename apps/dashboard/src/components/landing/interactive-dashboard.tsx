@@ -77,12 +77,33 @@ export function InteractiveDashboard({
   return (
     <div
       className={cn(
-        'flex overflow-hidden rounded-2xl border border-[#1E293B] bg-[#0B0F19] shadow-[0_40px_100px_-24px_rgba(0,0,0,0.85)]',
-        compact ? 'h-[520px]' : 'h-[640px]',
+        'flex flex-col overflow-hidden rounded-xl border border-[#1E293B] bg-[#0B0F19] shadow-[0_40px_100px_-24px_rgba(0,0,0,0.85)] sm:rounded-2xl',
+        compact ? 'md:h-[520px]' : 'md:h-[640px]',
         className,
       )}
     >
-      <aside className="flex w-52 shrink-0 flex-col border-r border-[#1E293B] bg-[#0B0F19]/95">
+      {/* Mobile tab bar */}
+      <div className="flex shrink-0 gap-1 overflow-x-auto border-b border-[#1E293B] p-2 md:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {NAV.map(({ id, label, icon: Icon }) => (
+          <button
+            key={id}
+            type="button"
+            onClick={() => setView(id)}
+            className={cn(
+              'flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-[11px] font-medium transition-colors',
+              view === id
+                ? 'bg-[#10B981]/15 text-[#10B981]'
+                : 'text-[#F3F4F6]/50',
+            )}
+          >
+            <Icon className="h-3.5 w-3.5" />
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex min-h-0 flex-1 flex-col md:flex-row">
+        <aside className="hidden w-52 shrink-0 flex-col border-r border-[#1E293B] bg-[#0B0F19]/95 md:flex">
         <div className="border-b border-[#1E293B] px-4 py-4">
           <Logo size="xs" subtitle="Local memory layer" />
         </div>
@@ -123,10 +144,11 @@ export function InteractiveDashboard({
         </div>
       </aside>
 
-      <main className="min-w-0 flex-1 overflow-y-auto bg-[#0B0F19]">
+      <main className="min-h-[280px] min-w-0 flex-1 overflow-y-auto bg-[#0B0F19] sm:min-h-[320px]">
         <div className="sticky top-0 z-10 border-b border-[#1E293B]/60 bg-[#0B0F19]/90 px-4 py-1.5 backdrop-blur-sm">
           <span className="text-[10px] text-[#F3F4F6]/35">
-            Demo · interactive sample data · try the sidebar
+            <span className="md:hidden">Demo · swipe tabs to explore</span>
+            <span className="hidden md:inline">Demo · interactive sample data · try the sidebar</span>
           </span>
         </div>
 
@@ -138,6 +160,7 @@ export function InteractiveDashboard({
           {view === 'activity' && <ActivityView compact={compact} />}
         </div>
       </main>
+      </div>
     </div>
   );
 }
@@ -213,7 +236,7 @@ function SearchView({ compact }: { compact: boolean }) {
   return (
     <>
       <PageHeader title="Search" subtitle="Semantic search across indexed files" />
-      <form onSubmit={runSearch} className="flex gap-2">
+      <form onSubmit={runSearch} className="flex flex-col gap-2 sm:flex-row">
         <div className="relative flex-1">
           <SearchIcon className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -223,7 +246,7 @@ function SearchView({ compact }: { compact: boolean }) {
             className="h-8 pl-8 text-xs"
           />
         </div>
-        <Button type="submit" size="sm" disabled={loading} className="h-8 text-xs">
+        <Button type="submit" size="sm" disabled={loading} className="h-8 w-full text-xs sm:w-auto">
           {loading ? 'Searching...' : 'Search'}
         </Button>
       </form>

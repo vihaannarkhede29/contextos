@@ -42,6 +42,11 @@
       radial-gradient(ellipse 70% 45% at 50% -15%, rgb(16 185 129 / 0.08), transparent),
       radial-gradient(ellipse 50% 35% at 100% 100%, rgb(30 41 59 / 0.5), transparent);
     min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  html {
+    overflow-x: hidden;
   }
 }
 

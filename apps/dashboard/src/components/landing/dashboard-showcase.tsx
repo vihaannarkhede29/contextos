@@ -8,7 +8,7 @@ import { InteractiveDashboard } from '@/components/landing/interactive-dashboard
 
 export function DashboardShowcase() {
   return (
-    <section className="border-b border-[#1E293B]/40 bg-[#0c1019] px-6 py-24 md:py-32 lg:px-10">
+    <section className="border-b border-[#1E293B]/40 bg-[#0c1019] px-4 py-16 sm:px-6 sm:py-24 md:py-32 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

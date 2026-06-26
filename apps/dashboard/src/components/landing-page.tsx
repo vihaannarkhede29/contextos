@@ -1,9 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import {
   ArrowRight,
+  Menu,
+  X,
   Zap,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -39,23 +42,34 @@ const complianceBadges = [
   { title: 'WAL', sub: 'SQLite' },
 ];
 
+const navLinks = [
+  { href: '#product', label: 'Product' },
+  { href: '#platform', label: 'Platform' },
+  { href: '#customers', label: 'Agents' },
+  { href: '#workflow', label: 'Workflow' },
+  { href: '#roi', label: 'ROI' },
+  { href: '#mcp', label: 'MCP' },
+  { href: '#install', label: 'Install' },
+];
+
 export function LandingPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#0B0F19] text-[#F3F4F6]">
       <header className="sticky top-0 z-50 border-b border-[#1E293B]/40 bg-[#0B0F19]/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-          <Link href="/" className="flex items-center">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:px-10">
+          <Link href="/" className="flex shrink-0 items-center">
             <Logo size="sm" />
           </Link>
-          <nav className="hidden items-center gap-8 text-sm text-[#F3F4F6]/50 lg:flex">
-            <a href="#product" className="hover:text-[#F3F4F6]">Product</a>
-            <a href="#platform" className="hover:text-[#F3F4F6]">Platform</a>
-            <a href="#customers" className="hover:text-[#F3F4F6]">Agents</a>
-            <a href="#workflow" className="hover:text-[#F3F4F6]">Workflow</a>
-            <a href="#roi" className="hover:text-[#F3F4F6]">ROI</a>
-            <a href="#mcp" className="hover:text-[#F3F4F6]">MCP</a>
+          <nav className="hidden items-center gap-6 text-sm text-[#F3F4F6]/50 lg:flex xl:gap-8">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="hover:text-[#F3F4F6]">
+                {link.label}
+              </a>
+            ))}
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Button
               variant="outline"
               className="hidden rounded-full border-[#1E293B] bg-transparent text-[#F3F4F6]/70 sm:inline-flex"
@@ -65,17 +79,67 @@ export function LandingPage() {
                 GitHub
               </a>
             </Button>
-            <Button className="rounded-full px-5" asChild>
+            <Button className="hidden rounded-full px-4 sm:inline-flex sm:px-5" asChild>
               <Link href="/app">Open Dashboard</Link>
             </Button>
+            <Button className="rounded-full px-4 text-xs sm:hidden" asChild>
+              <Link href="#install">Install</Link>
+            </Button>
+            <button
+              type="button"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#1E293B] text-[#F3F4F6]/70 lg:hidden"
+              onClick={() => setMenuOpen((o) => !o)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
+
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="overflow-hidden border-t border-[#1E293B]/40 lg:hidden"
+            >
+              <nav className="flex flex-col gap-1 px-4 py-4">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="rounded-lg px-3 py-2.5 text-sm text-[#F3F4F6]/70 hover:bg-[#1E293B] hover:text-[#F3F4F6]"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <a
+                  href={SITE.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-lg px-3 py-2.5 text-sm text-[#F3F4F6]/70 hover:bg-[#1E293B] hover:text-[#F3F4F6]"
+                >
+                  GitHub
+                </a>
+                <Link
+                  href="/app"
+                  className="mt-2 rounded-lg bg-[#10B981] px-3 py-2.5 text-center text-sm font-medium text-[#0B0F19]"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Open Dashboard
+                </Link>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <HeroSection />
 
       {/* Trusted by */}
-      <section id="customers" className="border-b border-[#1E293B]/40 px-6 py-14 lg:px-10">
+      <section id="customers" className="border-b border-[#1E293B]/40 px-4 py-10 sm:px-6 sm:py-14 lg:px-10">
         <div className="mx-auto max-w-7xl text-center">
           <p className="text-xs font-medium uppercase tracking-widest text-[#F3F4F6]/35">
             Trusted by developers shipping with AI
@@ -105,9 +169,9 @@ export function LandingPage() {
       <DashboardShowcase />
 
       {/* Statement */}
-      <section id="product" className="border-b border-[#1E293B]/40 px-6 py-24 md:py-32 lg:px-10">
+      <section id="product" className="border-b border-[#1E293B]/40 px-4 py-16 sm:px-6 sm:py-24 md:py-32 lg:px-10">
         <motion.div {...fade} className="mx-auto max-w-4xl text-center">
-          <h2 className="font-serif text-3xl leading-snug md:text-[2.75rem] md:leading-tight">
+          <h2 className="font-serif text-2xl leading-snug sm:text-3xl md:text-[2.75rem] md:leading-tight">
             ContextOS understands every file, commit, and convention across your
             repo — so you can ship with confidence and agents invest context with
             precision.
@@ -119,14 +183,14 @@ export function LandingPage() {
       </section>
 
       {/* 8-bit comparison — ContextOS vs without */}
-      <section className="border-b border-[#1E293B]/40 bg-[#0c1019] px-6 lg:px-10">
+      <section className="border-b border-[#1E293B]/40 bg-[#0c1019] px-4 lg:px-10">
         <motion.div {...fade}>
           <CTA1 className="py-20 md:py-28" />
         </motion.div>
       </section>
 
       {/* Graph */}
-      <section id="platform" className="relative overflow-hidden border-b border-[#1E293B]/40 bg-[#0c1019] px-6 py-24 md:py-32 lg:px-10">
+      <section id="platform" className="relative overflow-hidden border-b border-[#1E293B]/40 bg-[#0c1019] px-4 py-16 sm:px-6 sm:py-24 md:py-32 lg:px-10">
         <div className="landing-grid pointer-events-none absolute inset-0 opacity-40" />
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#10B981]/6 blur-[100px]" />
 
@@ -150,10 +214,10 @@ export function LandingPage() {
       </section>
 
       {/* Testimonial + stats — Weave quote block */}
-      <section className="border-b border-[#1E293B]/40 px-6 py-24 md:py-32 lg:px-10">
+      <section className="border-b border-[#1E293B]/40 px-4 py-16 sm:px-6 sm:py-24 md:py-32 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <motion.div {...fade} className="grid gap-16 lg:grid-cols-2 lg:items-center">
-            <blockquote className="font-serif text-2xl leading-relaxed text-[#F3F4F6]/90 md:text-3xl">
+          <motion.div {...fade} className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+            <blockquote className="font-serif text-xl leading-relaxed text-[#F3F4F6]/90 sm:text-2xl md:text-3xl">
               &ldquo;Our goal is to ship the highest quality code as fast as possible.
               ContextOS gives our agents an objective map of the repo — and keeps
               itself honest as we refactor.&rdquo;
@@ -185,7 +249,7 @@ export function LandingPage() {
       <RoiSection />
 
       {/* Workspace tabs */}
-      <section className="border-b border-[#1E293B]/40 bg-[#0c1019] px-6 py-24 md:py-32 lg:px-10">
+      <section className="border-b border-[#1E293B]/40 bg-[#0c1019] px-4 py-16 sm:px-6 sm:py-24 md:py-32 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <motion.h2 {...fade} className="font-serif text-center text-3xl md:text-4xl">
             Everything in one engineering workspace
@@ -197,7 +261,7 @@ export function LandingPage() {
       </section>
 
       {/* Mid CTA + big numbers */}
-      <section className="border-b border-[#1E293B]/40 px-6 py-24 md:py-32 lg:px-10">
+      <section className="border-b border-[#1E293B]/40 px-4 py-16 sm:px-6 sm:py-24 md:py-32 lg:px-10">
         <motion.div {...fade} className="mx-auto max-w-4xl text-center">
           <h2 className="font-serif text-3xl md:text-4xl">
             Local-first memory for developers shipping with AI at scale
@@ -216,13 +280,13 @@ export function LandingPage() {
               <Link href="/app">Open Dashboard</Link>
             </Button>
           </div>
-          <div className="mt-20 grid gap-16 sm:grid-cols-2">
+          <div className="mt-16 grid gap-10 sm:mt-20 sm:grid-cols-2 sm:gap-16">
             <div>
-              <p className="font-serif text-6xl md:text-7xl">100%</p>
+              <p className="font-serif text-5xl sm:text-6xl md:text-7xl">100%</p>
               <p className="mt-2 text-sm text-[#F3F4F6]/40">local — zero cloud calls</p>
             </div>
             <div>
-              <p className="font-serif text-6xl md:text-7xl">5</p>
+              <p className="font-serif text-5xl sm:text-6xl md:text-7xl">5</p>
               <p className="mt-2 text-sm text-[#F3F4F6]/40">MCP tools for Cursor agents</p>
             </div>
           </div>
@@ -230,7 +294,7 @@ export function LandingPage() {
       </section>
 
       {/* Enterprise badges */}
-      <section className="border-b border-[#1E293B]/40 px-6 py-20 lg:px-10">
+      <section className="border-b border-[#1E293B]/40 px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
         <motion.div {...fade} className="mx-auto max-w-7xl text-center">
           <p className="text-xs font-medium uppercase tracking-widest text-[#10B981]">
             Enterprise ready
@@ -258,7 +322,7 @@ export function LandingPage() {
 
       {/* MCP */}
       <section id="mcp" className="border-b border-[#1E293B]/40 px-6 py-20 lg:px-10">
-        <motion.div {...fade} className="mx-auto max-w-7xl overflow-hidden rounded-2xl border border-[#1E293B] glow-emerald">
+        <motion.div {...fade} className="mx-auto max-w-7xl overflow-hidden rounded-xl border border-[#1E293B] glow-emerald sm:rounded-2xl">
           <div className="grid lg:grid-cols-2">
             <div className="p-8 md:p-12">
               <p className="text-xs font-medium uppercase tracking-widest text-[#10B981]">
@@ -291,7 +355,7 @@ export function LandingPage() {
 
       <InstallSection />
 
-      <footer className="px-6 py-14 lg:px-10">
+      <footer className="px-4 py-10 sm:px-6 sm:py-14 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
             <Logo size="sm" showWordmark subtitle="Local-first memory for AI agents" />

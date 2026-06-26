@@ -96,9 +96,9 @@ export function WorkspaceTabs() {
   const current = tabs.find((t) => t.id === active) ?? tabs[0]!;
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-16">
-      <div className="space-y-1">
-        <p className="mb-4 text-xs font-medium uppercase tracking-widest text-[#10B981]">
+    <div className="grid gap-8 lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-16">
+      <div className="-mx-1 flex gap-2 overflow-x-auto pb-2 lg:mx-0 lg:block lg:space-y-1 lg:overflow-visible lg:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <p className="mb-4 hidden text-xs font-medium uppercase tracking-widest text-[#10B981] lg:block">
           Platform
         </p>
         {tabs.map((tab) => (
@@ -107,20 +107,20 @@ export function WorkspaceTabs() {
             type="button"
             onClick={() => setActive(tab.id)}
             className={cn(
-              'flex w-full items-center gap-3 rounded-lg px-4 py-3.5 text-left text-sm transition',
+              'flex shrink-0 items-center gap-2 rounded-lg px-3.5 py-2.5 text-left text-xs transition sm:gap-3 sm:px-4 sm:py-3.5 sm:text-sm lg:w-full',
               active === tab.id
                 ? 'bg-[#1E293B] text-[#F3F4F6]'
-                : 'text-[#F3F4F6]/45 hover:bg-[#1E293B]/40 hover:text-[#F3F4F6]/80',
+                : 'border border-[#1E293B]/60 text-[#F3F4F6]/45 hover:bg-[#1E293B]/40 hover:text-[#F3F4F6]/80 lg:border-transparent',
             )}
           >
             <tab.icon className="h-4 w-4 shrink-0 text-[#10B981]" />
-            {tab.label}
+            <span className="whitespace-nowrap">{tab.label}</span>
           </button>
         ))}
       </div>
 
-      <div className="rounded-2xl border border-[#1E293B] bg-[#141b2d]/80 p-6 md:p-8">
-        <h3 className="font-serif text-2xl text-[#F3F4F6]">{current.title}</h3>
+      <div className="rounded-xl border border-[#1E293B] bg-[#141b2d]/80 p-4 sm:rounded-2xl sm:p-6 md:p-8">
+        <h3 className="font-serif text-xl text-[#F3F4F6] sm:text-2xl">{current.title}</h3>
         <p className="mt-4 text-sm leading-relaxed text-[#F3F4F6]/55">{current.body}</p>
 
         {current.demoView ? (
