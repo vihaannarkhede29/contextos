@@ -1,13 +1,16 @@
+import { LocalDashboardPrompt } from '@/components/local-dashboard-prompt';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { getDatabase } from '@/lib/contextos-db';
+import { tryGetDatabase } from '@/lib/contextos-db';
 import { formatDate, formatPercent } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 export default async function DecisionsPage() {
-  const db = await getDatabase();
+  const db = await tryGetDatabase();
+  if (!db) return <LocalDashboardPrompt />;
+
   const decisions = db.getDecisions();
   db.close();
 

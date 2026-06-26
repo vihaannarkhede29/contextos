@@ -1,11 +1,14 @@
-import { getDatabase } from '@/lib/contextos-db';
+import { LocalDashboardPrompt } from '@/components/local-dashboard-prompt';
+import { tryGetDatabase } from '@/lib/contextos-db';
 import { formatDate } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 export default async function HomePage() {
-  const db = await getDatabase();
+  const db = await tryGetDatabase();
+  if (!db) return <LocalDashboardPrompt />;
+
   const stats = db.getStats();
   const recentActivity = db.getRecentActivity(5);
   db.close();

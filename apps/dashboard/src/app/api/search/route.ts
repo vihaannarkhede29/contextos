@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getProjectRoot } from '@/lib/contextos-db';
+import { getProjectRoot, isLocalDashboardAvailable } from '@/lib/contextos-db';
 
 export const runtime = 'nodejs';
 
@@ -9,6 +9,14 @@ export async function GET(request: Request) {
   if (!q) {
     return NextResponse.json({ error: 'Missing query' }, { status: 400 });
   }
+
+  if (!isLocalDashboardAvailable()) {
+    return NextResponse.json(
+      { error: 'Search requires a local ContextOS index. Run contextosai init && contextosai index.' },
+      { status: 503 },
+    );
+  }
+
   try {
     const { searchRepository } = await import('@contextosai/core/search');
     const results = await searchRepository(getProjectRoot(), q);

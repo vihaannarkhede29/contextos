@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   transpilePackages: ['@contextosai/shared'],
   serverExternalPackages: nativeExternals,
+  async redirects() {
+    return [{ source: '/favicon.ico', destination: '/icon.svg', permanent: false }];
+  },
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.externals = [...(config.externals ?? []), ...nativeExternals];

@@ -1,6 +1,7 @@
+import { LocalDashboardPrompt } from '@/components/local-dashboard-prompt';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getDatabase } from '@/lib/contextos-db';
+import { tryGetDatabase } from '@/lib/contextos-db';
 import { readProjectMemory } from '@/lib/contextos-memory';
 import { formatPercent } from '@/lib/utils';
 
@@ -8,7 +9,9 @@ export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 export default async function ArchitecturePage() {
-  const db = await getDatabase();
+  const db = await tryGetDatabase();
+  if (!db) return <LocalDashboardPrompt />;
+
   const rules = db.getRules();
   const files = db.getAllFiles();
   db.close();
