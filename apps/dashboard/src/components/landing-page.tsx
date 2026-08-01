@@ -19,6 +19,7 @@ import { WorkflowSpotlight } from '@/components/landing/workflow-spotlight';
 import { DashboardShowcase } from '@/components/landing/dashboard-showcase';
 import { RoiSection } from '@/components/landing/roi-section';
 import { InstallSection } from '@/components/landing/install-section';
+import { ReadinessAnalyzer } from '@/components/landing/readiness-analyzer';
 import { COMMANDS, MCP_CONFIG, SITE } from '@/lib/site-config';
 
 const fade = {
@@ -46,6 +47,7 @@ const navLinks = [
   { href: '#product', label: 'Product' },
   { href: '#platform', label: 'Platform' },
   { href: '#customers', label: 'Agents' },
+  { href: '#readiness', label: 'Readiness' },
   { href: '#workflow', label: 'Workflow' },
   { href: '#roi', label: 'ROI' },
   { href: '#mcp', label: 'MCP' },
@@ -165,6 +167,8 @@ export function LandingPage() {
       </section>
 
       <WorkflowSpotlight />
+
+      <ReadinessAnalyzer />
 
       <DashboardShowcase />
 

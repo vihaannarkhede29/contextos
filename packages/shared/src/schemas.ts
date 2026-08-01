@@ -78,3 +78,54 @@ export const ActivityRecordSchema = z.object({
 });
 
 export type ActivityRecord = z.infer<typeof ActivityRecordSchema>;
+
+export const ReadinessGradeSchema = z.enum(['A', 'B', 'C', 'D', 'F']);
+export type ReadinessGrade = z.infer<typeof ReadinessGradeSchema>;
+
+export const ReadinessDimensionIdSchema = z.enum([
+  'agent_memory',
+  'docs',
+  'testing',
+  'build',
+  'code_quality',
+  'security',
+]);
+export type ReadinessDimensionId = z.infer<typeof ReadinessDimensionIdSchema>;
+
+export const ReadinessCheckSchema = z.object({
+  id: z.string(),
+  label: z.string(),
+  passed: z.boolean(),
+  detail: z.string().optional(),
+});
+export type ReadinessCheck = z.infer<typeof ReadinessCheckSchema>;
+
+export const ReadinessNextStepSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  detail: z.string(),
+  dimensionId: ReadinessDimensionIdSchema,
+});
+export type ReadinessNextStep = z.infer<typeof ReadinessNextStepSchema>;
+
+export const ReadinessDimensionSchema = z.object({
+  id: ReadinessDimensionIdSchema,
+  name: z.string(),
+  score: z.number().min(0).max(100),
+  grade: ReadinessGradeSchema,
+  checks: z.array(ReadinessCheckSchema),
+  nextSteps: z.array(ReadinessNextStepSchema),
+});
+export type ReadinessDimension = z.infer<typeof ReadinessDimensionSchema>;
+
+export const ReadinessReportSchema = z.object({
+  overallScore: z.number().min(0).max(100),
+  level: z.number().int().min(1).max(5),
+  label: z.string(),
+  percentChecksPassed: z.number().min(0).max(100),
+  scannedAt: z.string().datetime(),
+  dimensions: z.array(ReadinessDimensionSchema),
+  strengths: z.array(z.string()),
+  nextSteps: z.array(ReadinessNextStepSchema),
+});
+export type ReadinessReport = z.infer<typeof ReadinessReportSchema>;

@@ -15,6 +15,8 @@ export const COMMANDS = {
   dashboard: 'contextosai dashboard',
   export: 'contextosai export',
   mcp: 'contextosai mcp',
+  readiness: 'contextosai readiness',
+  stats: 'contextosai stats',
 } as const;
 
 export const QUICK_START = [
@@ -63,6 +65,7 @@ export const CLI_REFERENCE = [
   { cmd: COMMANDS.index, desc: 'Index files, embed vectors, export rules' },
   { cmd: COMMANDS.watch, desc: 'Re-index on file changes' },
   { cmd: COMMANDS.search, desc: 'Semantic search across indexed files' },
+  { cmd: COMMANDS.readiness, desc: 'Score how agent-ready this repository is' },
   { cmd: COMMANDS.dashboard, desc: 'Open local dashboard at localhost:3000' },
   { cmd: COMMANDS.export, desc: 'Regenerate .cursor/rules/contextos.mdc + AGENTS.md' },
   { cmd: COMMANDS.mcp, desc: 'Start MCP server for Cursor' },

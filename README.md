@@ -59,6 +59,7 @@ Tools: `search_codebase`, `get_project_memory`, `get_architecture_rules`, `get_d
 | `contextosai index` | Index all supported files |
 | `contextosai index --force` | Force full re-index (embedding provider reset) |
 | `contextosai export` | Regenerate Cursor rules + AGENTS.md |
+| `contextosai readiness` | Score how agent-ready this repository is |
 | `contextosai mcp` | Start MCP server (stdio) |
 | `contextosai watch` | Watch for changes and re-index |
 | `contextosai search "<query>"` | Semantic search |

@@ -17,8 +17,10 @@ import {
   exportAgentContextOnly,
   startMcpServer,
   EmbeddingDimensionMismatchError,
+  computeReadiness,
 } from '@contextosai/core';
 import { ContextOSConfigSchema, DASHBOARD_PORT } from '@contextosai/shared';
+import type { ReadinessReport } from '@contextosai/shared';
 import open from 'open';
 import { killPort } from './kill-port.js';
 
@@ -176,6 +178,77 @@ program
       `  Last indexed:      ${chalk.bold(stats.lastIndexedAt ?? 'Never')}`,
     );
   });
+
+program
+  .command('readiness')
+  .description('Score how agent-ready this repository is')
+  .option('--json', 'Print full JSON report')
+  .action((opts: { json?: boolean }) => {
+    const root = getRoot();
+    requireInit(root);
+
+    const db = new ContextDatabase(root);
+    const stats = db.getStats();
+    db.close();
+
+    if (stats.filesIndexed === 0) {
+      console.log(chalk.yellow('No files indexed yet. Run: contextosai index'));
+      console.log(chalk.dim('Then re-run: contextosai readiness'));
+    }
+
+    const report = computeReadiness(root);
+
+    if (opts.json) {
+      console.log(JSON.stringify(report, null, 2));
+      return;
+    }
+
+    printReadiness(report);
+  });
+
+function gradeDots(grade: string): string {
+  const map: Record<string, number> = { A: 5, B: 4, C: 3, D: 2, F: 1 };
+  const n = map[grade] ?? 1;
+  return '·'.repeat(n);
+}
+
+function printReadiness(report: ReadinessReport): void {
+  console.log(chalk.cyan('ContextOS Agent Readiness'));
+  console.log(
+    `  Score:  ${chalk.bold(`${report.level} / 5`)}  ·  ${report.label}`,
+  );
+  console.log(
+    `  Checks: ${report.percentChecksPassed}% passed · overall ${report.overallScore}/100`,
+  );
+  console.log('');
+
+  const nameWidth = Math.max(...report.dimensions.map((d) => d.name.length));
+  for (const dim of report.dimensions) {
+    const name = dim.name.padEnd(nameWidth);
+    const gradeColor =
+      dim.grade === 'A' || dim.grade === 'B'
+        ? chalk.green
+        : dim.grade === 'C'
+          ? chalk.yellow
+          : chalk.red;
+    console.log(`  ${name}   ${gradeColor(dim.grade)}  ${chalk.dim(gradeDots(dim.grade))}`);
+  }
+
+  if (report.strengths.length > 0) {
+    console.log('');
+    console.log(`Strengths: ${report.strengths.join(', ')}`);
+  }
+
+  if (report.nextSteps.length > 0) {
+    const nextLevel = Math.min(5, report.level + 1);
+    console.log('');
+    console.log(chalk.cyan(`Next steps → Level ${nextLevel}`));
+    for (const step of report.nextSteps) {
+      console.log(`  • ${step.title}`);
+      console.log(chalk.dim(`    ${step.detail}`));
+    }
+  }
+}
 
 program
   .command('dashboard')

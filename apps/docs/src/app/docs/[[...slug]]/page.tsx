@@ -82,6 +82,15 @@ contextosai index --force
 
 Regenerate \`.cursor/rules/contextos.mdc\` and \`AGENTS.md\` from the current index.
 
+## contextosai readiness
+
+Score how agent-ready this repository is across Agent Memory, Docs, Testing, Build, Code Quality, and Security. Prints grades and next steps. Use \`--json\` for machine-readable output.
+
+\`\`\`bash
+contextosai readiness
+contextosai readiness --json
+\`\`\`
+
 ## contextosai mcp
 
 Start the MCP server (stdio) for Cursor integration.
@@ -165,6 +174,7 @@ pnpm smoke
 ## Agent Integration
 
 - \`contextosai export\` — regenerate Cursor rules
+- \`contextosai readiness\` — score agent readiness
 - \`contextosai mcp\` — MCP server for Cursor
 
 ## Troubleshooting

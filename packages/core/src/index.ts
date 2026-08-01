@@ -20,3 +20,4 @@ export { extractArchitectureRules, generateProjectMemory, writeProjectMemory } f
 export { scanRepository } from './scanner.js';
 export { VectorStore, cosineDistanceToScore } from './vectors.js';
 export { FileWatcher } from './watcher.js';
+export { computeReadiness } from './readiness.js';
