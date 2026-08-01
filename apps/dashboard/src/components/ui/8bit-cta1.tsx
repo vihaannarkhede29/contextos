@@ -71,17 +71,17 @@ export default function CTA1({
                 >
                   <span className="text-xs font-medium text-[#F3F4F6]/80">{row.feature}</span>
                   <div className="flex items-center justify-between gap-3 md:contents">
+                    <span className="retro text-[10px] text-primary md:hidden">{yoursLabel}</span>
+                    <span className="retro text-[10px] text-[#22C55E] md:text-center">
+                      {row.yours}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 md:contents">
                     <span className="retro text-[10px] text-muted-foreground md:hidden">
                       {theirsLabel}
                     </span>
                     <span className="retro text-[10px] text-muted-foreground md:text-center">
                       {row.theirs}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between gap-3 md:contents">
-                    <span className="retro text-[10px] text-primary md:hidden">{yoursLabel}</span>
-                    <span className="retro text-[10px] text-[#22C55E] md:text-center">
-                      {row.yours}
                     </span>
                   </div>
                 </div>

@@ -12,3 +12,5 @@ coverage
 packages/cli/dashboard
 *.db
 *.lance
+.vercel
+.env*
